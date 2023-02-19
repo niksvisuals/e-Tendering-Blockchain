@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -10,9 +11,10 @@
 	<script src="scripts/web3.js/web3.min.js"></script>
 
 	<script type="text/javascript">
-		console.log("12");
+		// console.log('Deployed html page')
+		//factory tender contract address and contract abi
+		var fcontract_address = "0xD30F314d11709Fba14c2acAc619d2aCFF0e78ff4"; //this is new on deployed at https://goerli.etherscan.io/address/0xd30f314d11709fba14c2acac619d2acff0e78ff4#code
 
-		var fcontract_address = "0x350Ed05eE716870D60A814f5Fe1ebD1a3B3Cf70c";
 		var fcontract_abi = [
 			{
 				"constant": false,
@@ -26,6 +28,20 @@
 				"outputs": [],
 				"payable": false,
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "getDeployedTenders",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -46,85 +62,64 @@
 				"payable": false,
 				"stateMutability": "view",
 				"type": "function"
-			},
+			}
+		]
+		// contract Tender abi
+		var contract_abi = [
 			{
 				"constant": true,
 				"inputs": [],
-				"name": "getDeployedTenders",
+				"name": "winIndex",
 				"outputs": [
 					{
 						"name": "",
-						"type": "address[]"
+						"type": "uint256"
 					}
 				],
 				"payable": false,
 				"stateMutability": "view",
 				"type": "function"
-			}
-		];
-
-		var contract_abi = [
-			{
-				"constant": false,
-				"inputs": [
-					{
-						"name": "index",
-						"type": "uint256"
-					}
-				],
-				"name": "finalizeBid",
-				"outputs": [],
-				"payable": true,
-				"stateMutability": "payable",
-				"type": "function"
 			},
 			{
-				"constant": false,
-				"inputs": [
-					{
-						"name": "index",
-						"type": "uint256"
-					}
-				],
-				"name": "getBidSummary",
-				"outputs": [
-					{
-						"name": "",
-						"type": "address"
-					},
-					{
-						"name": "",
-						"type": "uint256"
-					},
-					{
-						"name": "",
-						"type": "string"
-					}
-				],
-				"payable": false,
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"constant": false,
+				"constant": true,
 				"inputs": [],
-				"name": "getSummary",
+				"name": "verifyManager",
 				"outputs": [
 					{
 						"name": "",
-						"type": "address"
-					},
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "status",
+				"outputs": [
 					{
 						"name": "",
-						"type": "string"
-					},
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "getBidCount",
+				"outputs": [
 					{
 						"name": "",
 						"type": "uint256"
 					}
 				],
 				"payable": false,
-				"stateMutability": "nonpayable",
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -146,42 +141,40 @@
 				"type": "function"
 			},
 			{
-				"constant": false,
+				"constant": true,
 				"inputs": [],
-				"name": "verify",
-				"outputs": [],
-				"payable": false,
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"constant": false,
-				"inputs": [],
-				"name": "verifyManager",
+				"name": "getSummary",
 				"outputs": [
 					{
 						"name": "",
-						"type": "bool"
-					}
-				],
-				"payable": false,
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
+						"type": "address"
+					},
 					{
-						"name": "description",
+						"name": "",
 						"type": "string"
 					},
 					{
-						"name": "creator",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "manager",
+				"outputs": [
+					{
+						"name": "",
 						"type": "address"
 					}
 				],
 				"payable": false,
-				"stateMutability": "nonpayable",
-				"type": "constructor"
+				"stateMutability": "view",
+				"type": "function"
 			},
 			{
 				"constant": true,
@@ -205,20 +198,6 @@
 					{
 						"name": "",
 						"type": "string"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": true,
-				"inputs": [],
-				"name": "getBidCount",
-				"outputs": [
-					{
-						"name": "",
-						"type": "uint256"
 					}
 				],
 				"payable": false,
@@ -253,45 +232,17 @@
 				"type": "function"
 			},
 			{
-				"constant": true,
-				"inputs": [],
-				"name": "manager",
-				"outputs": [
+				"constant": false,
+				"inputs": [
 					{
-						"name": "",
-						"type": "address"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": true,
-				"inputs": [],
-				"name": "status",
-				"outputs": [
-					{
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": true,
-				"inputs": [],
-				"name": "winIndex",
-				"outputs": [
-					{
-						"name": "",
+						"name": "index",
 						"type": "uint256"
 					}
 				],
+				"name": "finalizeBid",
+				"outputs": [],
 				"payable": false,
-				"stateMutability": "view",
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -315,32 +266,84 @@
 				"payable": false,
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "getBidSummary",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address"
+					},
+					{
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"name": "",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "verify",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"name": "creator",
+						"type": "address"
+					}
+				],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "constructor"
 			}
-		];
+		]
+
 		if (typeof web3 !== 'undefined') {
-			web3 = new Web3(web3.currentProvider);
+			web3 = new Web3(web3.currentProvider)
 		} else {
 			// set the provider you want from Web3.providers
 			console.log('not detected')
-			web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
+			web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"))
 		}
 
-		var fcontract_instance;
-		fcontract_instance = web3.eth.contract(fcontract_abi).at(fcontract_address);
-		console.log(fcontract_instance);
+		var fcontract_instance
+		fcontract_instance = web3.eth.contract(fcontract_abi).at(fcontract_address)
+		// console.log(fcontract_instance)
 	</script>
 </head>
 
 <body>
 	<div class="home">
 		<div class="topbar">
-			DEPLOYED TENDERS
+			ALL TENDERS RELEASED
 		</div>
 		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th scope="col">Sr. No.</th>
-					<th scope="col">Tenders</th>
+					<th scope="col">Tender Address</th>
 					<th scope="col">Description</th>
 					<th scope="col">Status</th>
 				</tr>
@@ -384,110 +387,120 @@
 		</div>
 </body>
 <script>
-	
-	var index;
 
-	console.log("12");
-	var person = { addr: "0x8F0e5dfbC5E294FeD3a5C3DB473a5344523ec239", status: true };
-	var tenders = [];
+	var index
+	var tenders = []
+
 	fcontract_instance.getDeployedTenders(function (error, result) {
 
-
 		if (error) {
-			console.log("sd");
-			console.error(error);
+			console.log("Error while getting list of deployed tenders")
+			console.log(error)
 		}
 		else {
-			console.log(result, "result");
+			// console.log(result, "result")
+			//seems like adding tenders address to array named tenders
 			result.forEach(e => {
-				var res = e;
-				console.log(e);
-				let p = {addr:e};
+				let p = { addr: e, descp: '' }
 				tenders.push(p)
-			});
-			console.log(tenders)
-			var descpt = ['Petrol','Steel pipe','Gasoline','Crude oil','Diesel', 'Natural Gas', 'Aluminium Pipe'];
-			for(var j=0;j<7;j++) {
-				tenders[j].descp = descpt[j];
+			})
+			// console.log(tenders)
+			// TODO setting predefined names for tender change this to fetch desc from each tender, works for now
+			var descpt = ['Petrol', 'Steel pipe', 'Gasoline', 'Crude oil', 'Diesel', 'Natural Gas', 'Aluminium Pipe']
+			for (var j = 0; j < tenders.length; j++) {
+				// console.log(tenders[j], j)
+				tenders[j].descp = descpt[j]
 			}
 			console.log(tenders)
 			// for (var i = 0; i < result.length; i++) {
-			// 	var res = result[i];
-			// 	console.log(result[i]);
-			// 	person.addr = result[i];
-			// 	var contract_address = result[i];
-			// 	let contract_instance = web3.eth.contract(contract_abi).at(contract_address);
+			// 	var res = result[i]
+			// 	console.log(result[i])
+			// 	person.addr = result[i]
+			// 	var contract_address = result[i]
+			// 	let contract_instance = web3.eth.contract(contract_abi).at(contract_address)
 
 			// 	contract_instance.status(function (error, result) {
-			// 		console.log(result);
+			// 		console.log(result)
 			// 		if (error) {
-			// 			console.error(error);
+			// 			console.error(error)
 			// 		} else {
-			// 			person.status = !result;
+			// 			person.status = !result
 			// 		}
-			// 	});
-			// 	this.tenders.push(person);
-			// 	console.log(person, tenders);
+			// 	})
+			// 	this.tenders.push(person)
+			// 	console.log(person, tenders)
 			// }
 		}
-
-		populateTable();
+		populateTable()
 	})
 
 	// const tenders = [
 	// 	{ addr: "0x8F0e5dfbC5E294FeD3a5C3DB473a5344523ec239", status: true },
 	// 	{ addr: "0x6a0e5dfbC5E294EeC3a5C3DB473a5344523ec769", status: false }
-	// ];
+	// ]
 	function populateTable() {
-		console.log(tenders)
-		var tendersBody = document.getElementById("tenders");
+		// console.log(tenders)
+		var tendersBody = document.getElementById("tenders")
 		for (var i = 0; i < tenders.length; i++) {
 
-			tendersBody.innerHTML += tenders[i].status ? "<tr data-toggle='modal' data-target='#tenderModal' onclick='tenderClicked(" + i.toString() + ")'><td>" + (i + 1).toString() + "</td><td>" + tenders[i].addr + "</td><td>" + tenders[i].descp + "</td><td><i style='font-weight:500; font-size:22px;' class='fas fa-check-circle fa-5x'></i></td></tr>" : "<tr data-toggle='modal' data-target='#tenderModal' onclick='tenderClicked(" + i.toString() + ")'><td>" + (i + 1).toString() + "</td><td>" + tenders[i].addr + "</td><td>" + tenders[i].descp + "</td><td><i style='font-weight:500; font-size:22px;' class='fas fa-times-circle fa-5x'></i></td></tr>";
+			tendersBody.innerHTML += tenders[i].status ?
+				"<tr data-toggle='modal' data-target='#tenderModal' onclick='tenderClicked(" + i.toString() + ")'> \
+					<td>" + (i + 1).toString() + "</td> \
+					<td>" + tenders[i].addr + "</td> \
+					<td>" + tenders[i].descp + "</td> \
+					<td><i style='font-weight:500; font-size:22px;' class='fas fa-check-circle fa-5x'></i></td> \
+				</tr>"
+				:
+				"<tr data-toggle='modal' data-target='#tenderModal' onclick='tenderClicked(" + i.toString() + ")'> \
+					<td>" + (i + 1).toString() + "</td> \
+					<td>" + tenders[i].addr + "</td> \
+					<td>" + tenders[i].descp + "</td> \
+					<td><i style='font-weight:500; font-size:22px;' class='fas fa-times-circle fa-5x'></i></td> \
+				</tr>"
 		}
 	}
 	function tenderClicked(i) {
-		console.log(i);
-		index = i;
+		console.log(i)
+		index = i
 	}
 	function makeBid() {
-		var bidAmount = document.getElementById("bidAmount").value;
-		var descp = document.getElementById("descp").value;
-		contract_address = tenders[index].addr;
-		contract_instance = web3.eth.contract(contract_abi).at(contract_address);
+		var bidAmount = document.getElementById("bidAmount").value
+		var descp = document.getElementById("descp").value
+		contract_address = tenders[index].addr
+		contract_instance = web3.eth.contract(contract_abi).at(contract_address)
 
 		contract_instance.makeBid(bidAmount, descp, { from: web3.eth.accounts[0] }, function (error, result) {
 			if (error) {
 
-				console.error(error);
+				console.error(error)
 			} else {
-				var txHash = result;
-				console.log(txHash);
-				callWhenMined(txHash, mined);
+				var txHash = result
+				console.log(txHash)
+				callWhenMined(txHash, mined)
 			}
-		});
+		})
 
 		function mined() {
-			console.log("Mined");
+			console.log("Mined")
 		}
 		function callWhenMined(txHash, callback) {
 			web3.eth.getTransactionReceipt(txHash, function (error, rcpt) {
 				if (error) {
-					console.error(error);
+					console.error(error)
 				} else {
 					if (rcpt == null) {
 						setTimeout(function () {
-							callWhenMined(txHash, callback);
-						}, 500);
+							callWhenMined(txHash, callback)
+						}, 500)
 					} else {
-						callback();
+						callback()
 					}
 				}
 			})
 		}
-		console.log(bidAmount, descp, tenders[index].addr);
-		document.getElementById("bidAmount").value = "";
-		document.getElementById("descp").value = "";
+		console.log(bidAmount, descp, tenders[index].addr)
+		document.getElementById("bidAmount").value = ""
+		document.getElementById("descp").value = ""
 	}
 </script>
 <script src="https://kit.fontawesome.com/148a1c7248.js" crossorigin="anonymous"></script>
