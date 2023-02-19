@@ -1,12 +1,7 @@
 pragma solidity ^0.5.0;
 pragma experimental ABIEncoderV2;
-import "./SafeMath.sol";
-import "./owned.sol";
-/**
-* @title procurement
-* @author Abhishek Vispute
-*/
-
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v2.4.0/contracts/math/SafeMath.sol";
+import "./Owned.sol";
 
 contract Procurement is owned{
    using SafeMath for uint256;

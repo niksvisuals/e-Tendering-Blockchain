@@ -2,7 +2,7 @@
    tender, and tenderFactory - which is used to declare instances of the 'tender'
    contract.
 */
-pragma solidity^0.4.17;
+pragma solidity ^0.4.17;
 
 contract tenderFactory {
     address[] public deployedTenders;
@@ -64,7 +64,7 @@ contract Tender{
         _;
     }
     // This modifier is used to check if the sender of the function call is the manager.
-    function Tender(string description, address creator) public
+    constructor(string description, address creator) public
     {
         manager = creator;
         data = description;
@@ -110,7 +110,7 @@ contract Tender{
         winner = bids[index];
         winIndex = index;
         // winner.bidder.transfer(winner.bidAmount);
-        msg.sender.transfer(this.balance);
+        msg.sender.transfer(address(this).balance);
         complete = true;   
     }
 
@@ -129,7 +129,7 @@ contract Tender{
         return bids.length;
     }
     
-    function verify() public  {
+    function verify() public view  {
       require(msg.sender==manager);
     }
 
