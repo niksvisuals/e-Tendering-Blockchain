@@ -391,7 +391,7 @@
 	var index
 	var tenders = []
 
-	fcontract_instance.getDeployedTenders(function (error, result) {
+	fcontract_instance.getDeployedTenders(async (error, result) => {
 
 		if (error) {
 			console.log("Error while getting list of deployed tenders")
@@ -401,7 +401,7 @@
 			// console.log(result, "result")
 			//seems like adding tenders address to array named tenders
 			result.forEach(e => {
-				let p = { addr: e, descp: '' }
+				let p = { addr: e }
 				tenders.push(p)
 			})
 			// console.log(tenders)
@@ -411,26 +411,33 @@
 				// console.log(tenders[j], j)
 				tenders[j].descp = descpt[j]
 			}
-			console.log(tenders)
-			// for (var i = 0; i < result.length; i++) {
-			// 	var res = result[i]
-			// 	console.log(result[i])
-			// 	person.addr = result[i]
-			// 	var contract_address = result[i]
-			// 	let contract_instance = web3.eth.contract(contract_abi).at(contract_address)
-
-			// 	contract_instance.status(function (error, result) {
-			// 		console.log(result)
-			// 		if (error) {
-			// 			console.error(error)
-			// 		} else {
-			// 			person.status = !result
-			// 		}
-			// 	})
-			// 	this.tenders.push(person)
-			// 	console.log(person, tenders)
-			// }
+			// console.log(tenders)
+			for (var i = 0; i < result.length; i++) {
+				// var res = result[i]
+				// console.log(result[i])
+				// person.addr = result[i]
+				var contract_address = result[i]
+				let contract_instance = web3.eth.contract(contract_abi).at(contract_address)
+				await contract_instance.data((err, res) => {
+					if (err) {
+						console.error(err)
+					} else {
+						//TODO implement this to set description
+						console.log(res, 'data response')
+					}
+				})
+				await contract_instance.status(function (error, result) {
+					if (error) {
+						console.error(error)
+					} else {
+						// status = !result
+						console.log(result, 'status')
+					}
+				})
+				tenders[i]['status'] = true
+			}
 		}
+		// console.log(tenders, 'before calling populate')
 		populateTable()
 	})
 
