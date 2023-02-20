@@ -10,322 +10,327 @@
 	<script src="scripts/web3.js/web3.min.js"></script>
 
 	<script type="text/javascript">
-		var fcontract_address = "0x350Ed05eE716870D60A814f5Fe1ebD1a3B3Cf70c";
-		var fcontract_abi = [
-			{
-				constant: false,
-				inputs: [
-					{
-						name: "description",
-						type: "string"
-					}
-				],
-				name: "createTender",
-				outputs: [],
-				payable: false,
-				stateMutability: "nonpayable",
-				type: "function"
-			},
-			{
-				constant: true,
-				inputs: [
-					{
-						name: "",
-						type: "uint256"
-					}
-				],
-				name: "deployedTenders",
-				outputs: [
-					{
-						name: "",
-						type: "address"
-					}
-				],
-				payable: false,
-				stateMutability: "view",
-				type: "function"
-			},
-			{
-				constant: true,
-				inputs: [],
-				name: "getDeployedTenders",
-				outputs: [
-					{
-						name: "",
-						type: "address[]"
-					}
-				],
-				payable: false,
-				stateMutability: "view",
-				type: "function"
-			}
-		];
+	 var fcontract_address = "0xD30F314d11709Fba14c2acAc619d2aCFF0e78ff4"; //this is new on deployed at https://goerli.etherscan.io/address/0xd30f314d11709fba14c2acac619d2acff0e78ff4#code
 
-		var contract_abi = [
-			{
-				"constant": false,
-				"inputs": [
-					{
-						"name": "index",
-						"type": "uint256"
-					}
-				],
-				"name": "finalizeBid",
-				"outputs": [],
-				"payable": true,
-				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"constant": false,
-				"inputs": [
-					{
-						"name": "bidAmount",
-						"type": "uint256"
-					},
-					{
-						"name": "desc",
-						"type": "string"
-					}
-				],
-				"name": "makeBid",
-				"outputs": [],
-				"payable": false,
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"constant": false,
-				"inputs": [],
-				"name": "verify",
-				"outputs": [],
-				"payable": false,
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"name": "description",
-						"type": "string"
-					},
-					{
-						"name": "creator",
-						"type": "address"
-					}
-				],
-				"payable": false,
-				"stateMutability": "nonpayable",
-				"type": "constructor"
-			},
-			{
-				"constant": true,
-				"inputs": [],
-				"name": "complete",
-				"outputs": [
-					{
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": true,
-				"inputs": [],
-				"name": "data",
-				"outputs": [
-					{
-						"name": "",
-						"type": "string"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": true,
-				"inputs": [],
-				"name": "getBidCount",
-				"outputs": [
-					{
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": true,
-				"inputs": [
-					{
-						"name": "index",
-						"type": "uint256"
-					}
-				],
-				"name": "getBidSummary",
-				"outputs": [
-					{
-						"name": "",
-						"type": "address"
-					},
-					{
-						"name": "",
-						"type": "uint256"
-					},
-					{
-						"name": "",
-						"type": "string"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": true,
-				"inputs": [],
-				"name": "getSummary",
-				"outputs": [
-					{
-						"name": "",
-						"type": "address"
-					},
-					{
-						"name": "",
-						"type": "string"
-					},
-					{
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": true,
-				"inputs": [
-					{
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "hiddenBids",
-				"outputs": [
-					{
-						"name": "ID",
-						"type": "uint256"
-					},
-					{
-						"name": "bidAmount",
-						"type": "uint256"
-					},
-					{
-						"name": "bid",
-						"type": "string"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": true,
-				"inputs": [],
-				"name": "manager",
-				"outputs": [
-					{
-						"name": "",
-						"type": "address"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": true,
-				"inputs": [],
-				"name": "status",
-				"outputs": [
-					{
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": true,
-				"inputs": [],
-				"name": "verifyManager",
-				"outputs": [
-					{
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": true,
-				"inputs": [],
-				"name": "winIndex",
-				"outputs": [
-					{
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": true,
-				"inputs": [],
-				"name": "winner",
-				"outputs": [
-					{
-						"name": "bidder",
-						"type": "address"
-					},
-					{
-						"name": "bidAmount",
-						"type": "uint256"
-					},
-					{
-						"name": "bid",
-						"type": "string"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			}
-		];
-		if (typeof web3 !== "undefined") {
-			web3 = new Web3(web3.currentProvider);
-		} else {
-			// set the provider you want from Web3.providers
-			console.log('not detected')
-			web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
-		}
+var fcontract_abi = [
+  {
+	"constant": false,
+	"inputs": [
+	  {
+		"name": "description",
+		"type": "string"
+	  }
+	],
+	"name": "createTender",
+	"outputs": [],
+	"payable": false,
+	"stateMutability": "nonpayable",
+	"type": "function"
+  },
+  {
+	"constant": true,
+	"inputs": [],
+	"name": "getDeployedTenders",
+	"outputs": [
+	  {
+		"name": "",
+		"type": "address[]"
+	  }
+	],
+	"payable": false,
+	"stateMutability": "view",
+	"type": "function"
+  },
+  {
+	"constant": true,
+	"inputs": [
+	  {
+		"name": "",
+		"type": "uint256"
+	  }
+	],
+	"name": "deployedTenders",
+	"outputs": [
+	  {
+		"name": "",
+		"type": "address"
+	  }
+	],
+	"payable": false,
+	"stateMutability": "view",
+	"type": "function"
+  }
+]
+// contract Tender abi
+var contract_abi = [
+  {
+	"constant": true,
+	"inputs": [],
+	"name": "winIndex",
+	"outputs": [
+	  {
+		"name": "",
+		"type": "uint256"
+	  }
+	],
+	"payable": false,
+	"stateMutability": "view",
+	"type": "function"
+  },
+  {
+	"constant": true,
+	"inputs": [],
+	"name": "verifyManager",
+	"outputs": [
+	  {
+		"name": "",
+		"type": "bool"
+	  }
+	],
+	"payable": false,
+	"stateMutability": "view",
+	"type": "function"
+  },
+  {
+	"constant": true,
+	"inputs": [],
+	"name": "status",
+	"outputs": [
+	  {
+		"name": "",
+		"type": "bool"
+	  }
+	],
+	"payable": false,
+	"stateMutability": "view",
+	"type": "function"
+  },
+  {
+	"constant": true,
+	"inputs": [],
+	"name": "getBidCount",
+	"outputs": [
+	  {
+		"name": "",
+		"type": "uint256"
+	  }
+	],
+	"payable": false,
+	"stateMutability": "view",
+	"type": "function"
+  },
+  {
+	"constant": false,
+	"inputs": [
+	  {
+		"name": "bidAmount",
+		"type": "uint256"
+	  },
+	  {
+		"name": "desc",
+		"type": "string"
+	  }
+	],
+	"name": "makeBid",
+	"outputs": [],
+	"payable": false,
+	"stateMutability": "nonpayable",
+	"type": "function"
+  },
+  {
+	"constant": true,
+	"inputs": [],
+	"name": "getSummary",
+	"outputs": [
+	  {
+		"name": "",
+		"type": "address"
+	  },
+	  {
+		"name": "",
+		"type": "string"
+	  },
+	  {
+		"name": "",
+		"type": "uint256"
+	  }
+	],
+	"payable": false,
+	"stateMutability": "view",
+	"type": "function"
+  },
+  {
+	"constant": true,
+	"inputs": [],
+	"name": "manager",
+	"outputs": [
+	  {
+		"name": "",
+		"type": "address"
+	  }
+	],
+	"payable": false,
+	"stateMutability": "view",
+	"type": "function"
+  },
+  {
+	"constant": true,
+	"inputs": [],
+	"name": "complete",
+	"outputs": [
+	  {
+		"name": "",
+		"type": "bool"
+	  }
+	],
+	"payable": false,
+	"stateMutability": "view",
+	"type": "function"
+  },
+  {
+	"constant": true,
+	"inputs": [],
+	"name": "data",
+	"outputs": [
+	  {
+		"name": "",
+		"type": "string"
+	  }
+	],
+	"payable": false,
+	"stateMutability": "view",
+	"type": "function"
+  },
+  {
+	"constant": true,
+	"inputs": [
+	  {
+		"name": "",
+		"type": "uint256"
+	  }
+	],
+	"name": "hiddenBids",
+	"outputs": [
+	  {
+		"name": "ID",
+		"type": "uint256"
+	  },
+	  {
+		"name": "bidAmount",
+		"type": "uint256"
+	  },
+	  {
+		"name": "bid",
+		"type": "string"
+	  }
+	],
+	"payable": false,
+	"stateMutability": "view",
+	"type": "function"
+  },
+  {
+	"constant": false,
+	"inputs": [
+	  {
+		"name": "index",
+		"type": "uint256"
+	  }
+	],
+	"name": "finalizeBid",
+	"outputs": [],
+	"payable": false,
+	"stateMutability": "nonpayable",
+	"type": "function"
+  },
+  {
+	"constant": true,
+	"inputs": [],
+	"name": "winner",
+	"outputs": [
+	  {
+		"name": "bidder",
+		"type": "address"
+	  },
+	  {
+		"name": "bidAmount",
+		"type": "uint256"
+	  },
+	  {
+		"name": "bid",
+		"type": "string"
+	  }
+	],
+	"payable": false,
+	"stateMutability": "view",
+	"type": "function"
+  },
+  {
+	"constant": true,
+	"inputs": [
+	  {
+		"name": "index",
+		"type": "uint256"
+	  }
+	],
+	"name": "getBidSummary",
+	"outputs": [
+	  {
+		"name": "",
+		"type": "address"
+	  },
+	  {
+		"name": "",
+		"type": "uint256"
+	  },
+	  {
+		"name": "",
+		"type": "string"
+	  }
+	],
+	"payable": false,
+	"stateMutability": "view",
+	"type": "function"
+  },
+  {
+	"constant": true,
+	"inputs": [],
+	"name": "verify",
+	"outputs": [],
+	"payable": false,
+	"stateMutability": "view",
+	"type": "function"
+  },
+  {
+	"inputs": [
+	  {
+		"name": "description",
+		"type": "string"
+	  },
+	  {
+		"name": "creator",
+		"type": "address"
+	  }
+	],
+	"payable": false,
+	"stateMutability": "nonpayable",
+	"type": "constructor"
+  }
+]
+window.ethereum.enable()
+if (typeof web3 !== "undefined") {
+  web3 = new Web3(web3.currentProvider);
+} else {
+  // set the provider you want from Web3.providers
+  console.log("not detected");
+  web3 = new Web3(
+	new Web3.providers.HttpProvider("http://localhost:7545")
+  );
+}
 
-		var fcontract_instance;
-		fcontract_instance = web3.eth.contract(fcontract_abi).at(fcontract_address);
-		console.log(fcontract_instance);
+var fcontract_instance;
+fcontract_instance = web3.eth
+  .contract(fcontract_abi)
+  .at(fcontract_address);
 	</script>
 	<style>
 		.finalize {
@@ -352,11 +357,11 @@
 			</tbody>
 		</table>
 		<div class="content">
-			<!-- <div class="finalize">
+			<div class="finalize">
 				<input id="finalIndex" type="text" class="form-control" placeholder="Enter Bidder Address" aria-label="Username"
 					aria-describedby="basic-addon1" /><br />
 				<button type="button" onclick="finalizeBid()" class="btn btn-primary">Finalize</button>
-			</div> -->
+			</div>
 			<button style="display:none" type="button" onclick="addAddr()" data-toggle="modal" data-target="#bidModal"
 				class="btn btn-primary" id="myCheck">Finalize</button>
 			<div class="modal show" id="bidModal" tabindex="-1" role="dialog" aria-labelledby="bidModalLabel"
@@ -418,7 +423,7 @@
 									Close
 								</button>
 								<button type="button" class="btn btn-primary submit" id="submit-allot"
-									onclick="Allot()">
+									onclick="finalizeBid()">
 									Submit
 								</button>
 							</div>
@@ -466,8 +471,8 @@
 				console.error(error);
 			}
 			else {
-				console.log(result)
-				console.log(result.c[0]);
+				// console.log(result, 'result bid count')
+				// console.log(result.c[0]);
 				l = result.c[0];
 				getBids();
 			}
@@ -491,7 +496,8 @@
 				}
 				else {
 					console.log(result, "dff");
-					let bid = { index: result[0], amt: result[1].c[0], descp: result[2] };
+					//result 0 is bidders address,
+					let bid = { index: result[0], amt: result[1].c[0], descp: result[2], id:i-1 };
 					bids.push(bid);
 				}
 			})
@@ -503,7 +509,8 @@
 		var copyText = document.getElementById(value);
 		let obj = bids.find(o => o.index == value);
 		let amt = obj.amt.toString();
-		console.log(copyText);
+		// console.log(copyText);
+		console.log(obj)
 		copyText.select();
 		copyText.setSelectionRange(0, 99999);
 		document.execCommand("copy");
@@ -515,36 +522,29 @@
 		// finalIndex.value = value;
 	}
 	function populateBids() {
-		console.log("populate", bids);
+		// console.log("populate", bids);
 		var bidsBody = document.getElementById("bidss");
 		bids.forEach(e => {
 			console.log(e);
 			bidsBody.innerHTML += "<tr data-toggle='modal' data-target='#tenderModal' ><td><input id='" + e.index + "' onclick='indexClicked(this.id)' style='background-color:transparent;border;none' value='" + e.index + "'/></td><td>" + e.amt.toString() + "</td><td>" + e.descp + "</td><td></td></tr>";
 		});
 	}
-	//0x5a4e182c14f6d8308589f7CF7a0d1BD959811DC1
-	//
-	//console.log(bids)
-	// const bids = [
-	// 	{ index: 435, amt: 345, descp:"This is the description of a bid"},
-	// 	{ index: 654, amt: 688, descp:"This is the description of a bid"}
-	// ];
 
-	// for (var i = 0; i < bids.length; i++) {
-	// 	bidsBody.innerHTML += "<tr data-toggle='modal' data-target='#tenderModal' onclick='bidClicked(" + bids[i].index.toString() + ")'><td>" + bids[i].index.toString() + "</td><td>" + bids[i].amt.toString() + "</td><td>" + bids[i].descp + "</td><td></td></tr>";
-	// }
-
-	function finalizeBid() {
+	async function finalizeBid() {
 		index = document.getElementById("finalIndex");
-		contract_instance.finalizeBid(
-			index.value,
+		// console.log(index.value)
+		let obj = bids.find(o => o.index == index.value);
+		console.log(obj.id, 'bid index')
+		
+		await contract_instance.finalizeBid(
+			obj.id,
 			{ from: web3.eth.accounts[0] },
 			function (error, result) {
 				if (error) {
 					console.error(error);
 				} else {
 					var txHash = result;
-					console.log(txHash);
+					console.log(txHash, 'tx hash');
 					callWhenMined(txHash, mined);
 				}
 			}
@@ -565,6 +565,7 @@
 						callWhenMined(txHash, callback);
 					}, 500);
 				} else {
+					console.log(rcpt)
 					callback();
 				}
 			}
