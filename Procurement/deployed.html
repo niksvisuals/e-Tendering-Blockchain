@@ -424,6 +424,7 @@
 					} else {
 						//TODO implement this to set description
 						console.log(res, 'data response')
+						console.log(i,'i')
 					}
 				})
 				await contract_instance.status(function (error, result) {
@@ -434,10 +435,11 @@
 						console.log(result, 'status')
 					}
 				})
+				console.log(i,'i')
 				tenders[i]['status'] = true
 			}
 		}
-		// console.log(tenders, 'before calling populate')
+		console.log(tenders, 'before calling populate')
 		populateTable()
 	})
 
