@@ -1,12 +1,10 @@
-function sendEmail(email_id) {
+function sendEmail(email_id, _itemid) {
   Email.send({
-    Host : "smtp.elasticemail.com",
-    Username : "abhivispute33@gmail.com",
-    Password : "E570F9C7F661AF0197EDDF30B781CB32F974",
-    To : email_id,
-    From : "abhivispute33@gmail.com",
-    Subject : "GAIL Tender",
-    Body : "Congratulations, tender is alloted to you Item id: "
+    SecureToken: '831d1048-16d0-4f28-9640-929a8d4d9fc5',
+    To: email_id,
+    From: 'shrenik.ks@somaiya.edu',
+    Subject: "Tender Bid Awarded to You",
+    Body: "Congratulations, tender is alloted to you. Please make a note of Item id: "+_itemid
     // Host: "smtp.gmail.com",
     // Username : "abhivispute33@gmail.com",
     // Password : "",
@@ -15,8 +13,8 @@ function sendEmail(email_id) {
     // Subject : "<email subject>",
     // Body : "<email body>",
   })
-  .then(function(message){
-    alert("mail sent successfully")
-  });
+    .then(function (message) {
+      alert("mail sent successfully")
+    });
 }
 

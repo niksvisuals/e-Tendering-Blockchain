@@ -12,390 +12,390 @@
   <script src="scripts/custom/qrcode.js"></script>
 
   <script type="text/javascript">
-    var contract_address = "0x4EDB06f00FcA1CCCe632d769A9d936294D9F949C";
-    var contract_abi = [
-      {
-        inputs: [],
-        payable: false,
-        stateMutability: "nonpayable",
-        type: "constructor"
-      },
-      {
-        payable: true,
-        stateMutability: "payable",
-        type: "fallback"
-      },
-      {
-        constant: true,
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256"
-          },
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256"
-          }
-        ],
-        name: "History",
-        outputs: [
-          {
-            internalType: "address",
-            name: "holder",
-            type: "address"
-          },
-          {
-            internalType: "uint256",
-            name: "timestampArrived",
-            type: "uint256"
-          },
-          {
-            internalType: "uint256",
-            name: "timestampShipped",
-            type: "uint256"
-          },
-          {
-            internalType: "address",
-            name: "nextStop",
-            type: "address"
-          },
-          {
-            internalType: "address payable",
-            name: "vendor",
-            type: "address"
-          },
-          {
-            internalType: "uint256",
-            name: "quotation",
-            type: "uint256"
-          },
-          {
-            internalType: "bool",
-            name: "Status",
-            type: "bool"
-          }
-        ],
-        payable: false,
-        stateMutability: "view",
-        type: "function"
-      },
-      {
-        constant: true,
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256"
-          }
-        ],
-        name: "PresentConditionOfItem",
-        outputs: [
-          {
-            internalType: "address",
-            name: "holder",
-            type: "address"
-          },
-          {
-            internalType: "uint256",
-            name: "timestampArrived",
-            type: "uint256"
-          },
-          {
-            internalType: "uint256",
-            name: "timestampShipped",
-            type: "uint256"
-          },
-          {
-            internalType: "address",
-            name: "nextStop",
-            type: "address"
-          },
-          {
-            internalType: "address payable",
-            name: "vendor",
-            type: "address"
-          },
-          {
-            internalType: "uint256",
-            name: "quotation",
-            type: "uint256"
-          },
-          {
-            internalType: "bool",
-            name: "Status",
-            type: "bool"
-          }
-        ],
-        payable: false,
-        stateMutability: "view",
-        type: "function"
-      },
-      {
-        constant: false,
-        inputs: [
-          {
-            internalType: "address",
-            name: "_newholder",
-            type: "address"
-          }
-        ],
-        name: "addHolder",
-        outputs: [],
-        payable: false,
-        stateMutability: "nonpayable",
-        type: "function"
-      },
-      {
-        constant: false,
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "_itemid",
-            type: "uint256"
-          },
-          {
-            internalType: "address payable",
-            name: "_vendor",
-            type: "address"
-          },
-          {
-            internalType: "uint256",
-            name: "_quotation",
-            type: "uint256"
-          }
-        ],
-        name: "allotItemToVendor",
-        outputs: [],
-        payable: false,
-        stateMutability: "nonpayable",
-        type: "function"
-      },
-      {
-        constant: false,
-        inputs: [
-          {
-            internalType: "address payable",
-            name: "_to",
-            type: "address"
-          }
-        ],
-        name: "destroySmartContract",
-        outputs: [],
-        payable: false,
-        stateMutability: "nonpayable",
-        type: "function"
-      },
-      {
-        constant: true,
-        inputs: [],
-        name: "getBalance",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256"
-          }
-        ],
-        payable: false,
-        stateMutability: "view",
-        type: "function"
-      },
-      {
-        constant: true,
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "_itemid",
-            type: "uint256"
-          }
-        ],
-        name: "getHistory",
-        outputs: [
-          {
-            internalType: "address[]",
-            name: "",
-            type: "address[]"
-          },
-          {
-            internalType: "uint256[]",
-            name: "",
-            type: "uint256[]"
-          },
-          {
-            internalType: "uint256[]",
-            name: "",
-            type: "uint256[]"
-          },
-          {
-            internalType: "address[]",
-            name: "",
-            type: "address[]"
-          },
-          {
-            internalType: "address",
-            name: "payble",
-            type: "address"
-          },
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256"
-          },
-          {
-            internalType: "bool",
-            name: "",
-            type: "bool"
-          }
-        ],
-        payable: false,
-        stateMutability: "view",
-        type: "function"
-      },
-      {
-        constant: true,
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "_itemid",
-            type: "uint256"
-          }
-        ],
-        name: "getPresentStatus",
-        outputs: [
-          {
-            internalType: "address",
-            name: "_holder",
-            type: "address"
-          },
-          {
-            internalType: "uint256",
-            name: "_timestampArrived",
-            type: "uint256"
-          },
-          {
-            internalType: "uint256",
-            name: "_timestampShipped",
-            type: "uint256"
-          },
-          {
-            internalType: "address",
-            name: "_nextStop",
-            type: "address"
-          },
-          {
-            internalType: "address payable",
-            name: "_vendor",
-            type: "address"
-          },
-          {
-            internalType: "uint256",
-            name: "_quotation",
-            type: "uint256"
-          },
-          {
-            internalType: "bool",
-            name: "_status",
-            type: "bool"
-          }
-        ],
-        payable: false,
-        stateMutability: "view",
-        type: "function"
-      },
-      {
-        constant: true,
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256"
-          }
-        ],
-        name: "listedItems",
-        outputs: [
-          {
-            internalType: "bool",
-            name: "",
-            type: "bool"
-          }
-        ],
-        payable: false,
-        stateMutability: "view",
-        type: "function"
-      },
-      {
-        constant: true,
-        inputs: [
-          {
-            internalType: "address",
-            name: "",
-            type: "address"
-          }
-        ],
-        name: "listedholders",
-        outputs: [
-          {
-            internalType: "bool",
-            name: "",
-            type: "bool"
-          }
-        ],
-        payable: false,
-        stateMutability: "view",
-        type: "function"
-      },
-      {
-        constant: false,
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "_itemid",
-            type: "uint256"
-          },
-          {
-            internalType: "address",
-            name: "_nextStop",
-            type: "address"
-          }
-        ],
-        name: "shipNext",
-        outputs: [],
-        payable: false,
-        stateMutability: "nonpayable",
-        type: "function"
-      },
-      {
-        constant: false,
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "_itemid",
-            type: "uint256"
-          }
-        ],
-        name: "updateStateOfArrivedItem",
-        outputs: [],
-        payable: false,
-        stateMutability: "nonpayable",
-        type: "function"
-      }
-    ];
-
-    if (typeof web3 !== "undefined") {
-      web3 = new Web3(web3.currentProvider);
-    } else {
-      // set the provider you want from Web3.providers
-      console.log("not detected");
-      web3 = new Web3(
-        new Web3.providers.HttpProvider("http://localhost:7545")
-      );
-    }
-
-    var contract_instance;
-    contract_instance = web3.eth.contract(contract_abi).at(contract_address);
-    console.log(contract_instance);
+    /*  var contract_address = "0x1Ae2358cA0F5F3eB531d108114fa20e5ca45256d";
+     var contract_abi = [
+       {
+         inputs: [],
+         payable: false,
+         stateMutability: "nonpayable",
+         type: "constructor"
+       },
+       {
+         payable: true,
+         stateMutability: "payable",
+         type: "fallback"
+       },
+       {
+         constant: true,
+         inputs: [
+           {
+             internalType: "uint256",
+             name: "",
+             type: "uint256"
+           },
+           {
+             internalType: "uint256",
+             name: "",
+             type: "uint256"
+           }
+         ],
+         name: "History",
+         outputs: [
+           {
+             internalType: "address",
+             name: "holder",
+             type: "address"
+           },
+           {
+             internalType: "uint256",
+             name: "timestampArrived",
+             type: "uint256"
+           },
+           {
+             internalType: "uint256",
+             name: "timestampShipped",
+             type: "uint256"
+           },
+           {
+             internalType: "address",
+             name: "nextStop",
+             type: "address"
+           },
+           {
+             internalType: "address payable",
+             name: "vendor",
+             type: "address"
+           },
+           {
+             internalType: "uint256",
+             name: "quotation",
+             type: "uint256"
+           },
+           {
+             internalType: "bool",
+             name: "Status",
+             type: "bool"
+           }
+         ],
+         payable: false,
+         stateMutability: "view",
+         type: "function"
+       },
+       {
+         constant: true,
+         inputs: [
+           {
+             internalType: "uint256",
+             name: "",
+             type: "uint256"
+           }
+         ],
+         name: "PresentConditionOfItem",
+         outputs: [
+           {
+             internalType: "address",
+             name: "holder",
+             type: "address"
+           },
+           {
+             internalType: "uint256",
+             name: "timestampArrived",
+             type: "uint256"
+           },
+           {
+             internalType: "uint256",
+             name: "timestampShipped",
+             type: "uint256"
+           },
+           {
+             internalType: "address",
+             name: "nextStop",
+             type: "address"
+           },
+           {
+             internalType: "address payable",
+             name: "vendor",
+             type: "address"
+           },
+           {
+             internalType: "uint256",
+             name: "quotation",
+             type: "uint256"
+           },
+           {
+             internalType: "bool",
+             name: "Status",
+             type: "bool"
+           }
+         ],
+         payable: false,
+         stateMutability: "view",
+         type: "function"
+       },
+       {
+         constant: false,
+         inputs: [
+           {
+             internalType: "address",
+             name: "_newholder",
+             type: "address"
+           }
+         ],
+         name: "addHolder",
+         outputs: [],
+         payable: false,
+         stateMutability: "nonpayable",
+         type: "function"
+       },
+       {
+         constant: false,
+         inputs: [
+           {
+             internalType: "uint256",
+             name: "_itemid",
+             type: "uint256"
+           },
+           {
+             internalType: "address payable",
+             name: "_vendor",
+             type: "address"
+           },
+           {
+             internalType: "uint256",
+             name: "_quotation",
+             type: "uint256"
+           }
+         ],
+         name: "allotItemToVendor",
+         outputs: [],
+         payable: false,
+         stateMutability: "nonpayable",
+         type: "function"
+       },
+       {
+         constant: false,
+         inputs: [
+           {
+             internalType: "address payable",
+             name: "_to",
+             type: "address"
+           }
+         ],
+         name: "destroySmartContract",
+         outputs: [],
+         payable: false,
+         stateMutability: "nonpayable",
+         type: "function"
+       },
+       {
+         constant: true,
+         inputs: [],
+         name: "getBalance",
+         outputs: [
+           {
+             internalType: "uint256",
+             name: "",
+             type: "uint256"
+           }
+         ],
+         payable: false,
+         stateMutability: "view",
+         type: "function"
+       },
+       {
+         constant: true,
+         inputs: [
+           {
+             internalType: "uint256",
+             name: "_itemid",
+             type: "uint256"
+           }
+         ],
+         name: "getHistory",
+         outputs: [
+           {
+             internalType: "address[]",
+             name: "",
+             type: "address[]"
+           },
+           {
+             internalType: "uint256[]",
+             name: "",
+             type: "uint256[]"
+           },
+           {
+             internalType: "uint256[]",
+             name: "",
+             type: "uint256[]"
+           },
+           {
+             internalType: "address[]",
+             name: "",
+             type: "address[]"
+           },
+           {
+             internalType: "address",
+             name: "payble",
+             type: "address"
+           },
+           {
+             internalType: "uint256",
+             name: "",
+             type: "uint256"
+           },
+           {
+             internalType: "bool",
+             name: "",
+             type: "bool"
+           }
+         ],
+         payable: false,
+         stateMutability: "view",
+         type: "function"
+       },
+       {
+         constant: true,
+         inputs: [
+           {
+             internalType: "uint256",
+             name: "_itemid",
+             type: "uint256"
+           }
+         ],
+         name: "getPresentStatus",
+         outputs: [
+           {
+             internalType: "address",
+             name: "_holder",
+             type: "address"
+           },
+           {
+             internalType: "uint256",
+             name: "_timestampArrived",
+             type: "uint256"
+           },
+           {
+             internalType: "uint256",
+             name: "_timestampShipped",
+             type: "uint256"
+           },
+           {
+             internalType: "address",
+             name: "_nextStop",
+             type: "address"
+           },
+           {
+             internalType: "address payable",
+             name: "_vendor",
+             type: "address"
+           },
+           {
+             internalType: "uint256",
+             name: "_quotation",
+             type: "uint256"
+           },
+           {
+             internalType: "bool",
+             name: "_status",
+             type: "bool"
+           }
+         ],
+         payable: false,
+         stateMutability: "view",
+         type: "function"
+       },
+       {
+         constant: true,
+         inputs: [
+           {
+             internalType: "uint256",
+             name: "",
+             type: "uint256"
+           }
+         ],
+         name: "listedItems",
+         outputs: [
+           {
+             internalType: "bool",
+             name: "",
+             type: "bool"
+           }
+         ],
+         payable: false,
+         stateMutability: "view",
+         type: "function"
+       },
+       {
+         constant: true,
+         inputs: [
+           {
+             internalType: "address",
+             name: "",
+             type: "address"
+           }
+         ],
+         name: "listedholders",
+         outputs: [
+           {
+             internalType: "bool",
+             name: "",
+             type: "bool"
+           }
+         ],
+         payable: false,
+         stateMutability: "view",
+         type: "function"
+       },
+       {
+         constant: false,
+         inputs: [
+           {
+             internalType: "uint256",
+             name: "_itemid",
+             type: "uint256"
+           },
+           {
+             internalType: "address",
+             name: "_nextStop",
+             type: "address"
+           }
+         ],
+         name: "shipNext",
+         outputs: [],
+         payable: false,
+         stateMutability: "nonpayable",
+         type: "function"
+       },
+       {
+         constant: false,
+         inputs: [
+           {
+             internalType: "uint256",
+             name: "_itemid",
+             type: "uint256"
+           }
+         ],
+         name: "updateStateOfArrivedItem",
+         outputs: [],
+         payable: false,
+         stateMutability: "nonpayable",
+         type: "function"
+       }
+     ];
+ 
+     if (typeof web3 !== "undefined") {
+       web3 = new Web3(web3.currentProvider);
+     } else {
+       // set the provider you want from Web3.providers
+       console.log("not detected");
+       web3 = new Web3(
+         new Web3.providers.HttpProvider("http://localhost:7545")
+       );
+     }
+ 
+     var contract_instance;
+     contract_instance = web3.eth.contract(contract_abi).at(contract_address);
+     console.log(contract_instance); */
   </script>
 </head>
 
@@ -465,7 +465,9 @@
             ADMIN
           </button>
         </div> -->
-      <p><h3 class="display-5">WELCOME</h3></p>
+      <p>
+      <h3 class="display-5">WELCOME</h3>
+      </p>
       <div class="container">
         <div class="row">
           <div class="col-md-3 col-sm-12"></div>
@@ -481,11 +483,14 @@
                   </h5>
                 </div>
 
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                  data-parent="#accordionExample">
                   <div class="card-body">
-                    <a href="/track.html" data-toggle="tooltip" title="User can track an item on blockchain">Track Item</a>
+                    <a href="/track.html" data-toggle="tooltip" title="User can track an item on blockchain">Track
+                      Item</a>
                     <hr style="margin:0.5rem 0" />
-                    <a href="/record.html" data-toggle="tooltip" title="User can view a particular record from blockchain">Get
+                    <a href="/record.html" data-toggle="tooltip"
+                      title="User can view a particular record from blockchain">Get
                       Record</a>
                   </div>
                 </div>
@@ -502,9 +507,11 @@
 
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                   <div class="card-body">
-                    <a href="/track.html" data-toggle="tooltip" title="Vendor can track an item on blockchain">Track Item</a>
+                    <a href="/track.html" data-toggle="tooltip" title="Vendor can track an item on blockchain">Track
+                      Item</a>
                     <hr style="margin:0.5rem 0" />
-                    <a href="/record.html" data-toggle="tooltip" title="Vendor can view a particular record from blockchain">Get
+                    <a href="/record.html" data-toggle="tooltip"
+                      title="Vendor can view a particular record from blockchain">Get
                       Record</a>
                     <hr style="margin:0.5rem 0" />
                     <a href="/ship.html" data-toggle="tooltip"
@@ -525,16 +532,18 @@
 
                 <div id="collapseThree" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                   <div class="card-body">
-                    <a href="/track.html" data-toggle="tooltip" title="Vendor can track an item on blockchain">Track Item</a>
+                    <a href="/track.html" data-toggle="tooltip" title="Vendor can track an item on blockchain">Track
+                      Item</a>
                     <hr style="margin:0.5rem 0" />
-                    <a href="/record.html" data-toggle="tooltip" title="Vendor can view a particular record from blockchain">Get
+                    <a href="/record.html" data-toggle="tooltip"
+                      title="Vendor can view a particular record from blockchain">Get
                       Record</a>
                     <hr style="margin:0.5rem 0" />
                     <a href="/ship.html" data-toggle="tooltip"
                       title="Vendor can add shipping details of an item on blockchain.">Ship Next</a>
-                      <hr style="margin:0.5rem 0" />
-                      <a href="/update.html" data-toggle="tooltip"
-                        title="GAIL Manager can update the state of an item on blockchain">Update State</a>
+                    <hr style="margin:0.5rem 0" />
+                    <a href="/update.html" data-toggle="tooltip"
+                      title="GAIL Manager can update the state of an item on blockchain">Update State</a>
 
                   </div>
                 </div>
@@ -551,7 +560,8 @@
 
                 <div id="collapseFour" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                   <div class="card-body">
-                    <a href="/track.html" data-toggle="tooltip" title="GAIL Manager can track an item on blockchain">Track
+                    <a href="/track.html" data-toggle="tooltip"
+                      title="GAIL Manager can track an item on blockchain">Track
                       Item</a>
                     <hr style="margin:0.5rem 0" />
                     <a href="/record.html" data-toggle="tooltip"
@@ -561,8 +571,8 @@
                     <a href="/update.html" data-toggle="tooltip"
                       title="GAIL Manager can update the state of an item on blockchain">Update State</a>
                     <hr style="margin:0.5rem 0" />
-                    <a href="/admin.html" data-toggle="tooltip"
-                      title="GAIL Manager can query the balance">Restricted To Admin</a>
+                    <a href="/admin.html" data-toggle="tooltip" title="GAIL Manager can query the balance">Restricted To
+                      Admin</a>
                     <!-- <hr style="margin:0.5rem 0" />
                     <a href="#" data-toggle="tooltip"
                       title="GAIL Manager can add Intermediary in the proccess">Add Intermediary</a>

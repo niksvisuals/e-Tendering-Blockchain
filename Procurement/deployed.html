@@ -333,6 +333,83 @@
 		var fcontract_instance
 		fcontract_instance = web3.eth.contract(fcontract_abi).at(fcontract_address)
 		// console.log(fcontract_instance)
+
+
+		var index
+		var tenders = []
+
+		fcontract_instance.getDeployedTenders(async (error, result) => {
+
+			if (error) {
+				console.log("Error while getting list of deployed tenders")
+				console.log(error)
+			}
+			else {
+				//seems like adding tenders address to array named tenders
+				result.forEach(e => {
+					let p = { addr: e }
+					tenders.push(p)
+				})
+
+				// TODO setting predefined names for tender change this to fetch desc from each tender, works for now
+				/* var descpt = ['Petrol', 'Steel pipe', 'Gasoline', 'Crude oil', 'Diesel', 'Natural Gas', 'Aluminium Pipe']
+				for (var j = 0; j < tenders.length; j++) {
+					// console.log(tenders[j], j)
+					tenders[j].descp = descpt[j]
+				} */
+				//------------map
+				console.log('map start')
+				let resultsss = 	tenders.map(async(tender) => {
+						let instance = web3.eth.contract(contract_abi).at(tender.addr)
+						let descRes = await instance.data((err, res) => {
+							if (err) { console.log(err) }
+							else {
+								// console.log(res, 'inside map')
+								// tender.descp = res
+								return res
+							}
+						})
+						/* await instance.status((err, res) => {
+							if (err) { console.log(err) }
+							else {
+								// console.log(res, 'inside map')
+								// tender.status = res
+								return res
+							}
+						}) */
+					})
+					console.log('map end')
+				//-- forEach loop
+			/* 	console.log('start foreach loop')
+				tenders.forEach(tender => {
+					let instance = web3.eth.contract(contract_abi).at(tender.addr)
+					instance.data((err, res) => {
+						if (!err) { tender.descp = res }
+						else {
+							// console.log(res, 'inside map')
+							console.log(err)
+
+							// return res
+						}
+					})
+					instance.status((err, res) => {
+						if (!err) { tender.status = res }
+						else {
+							// console.log(res, 'inside map')
+							console.log(err)
+							tender.status = res
+							// return res
+						}
+					})
+					console.log(tender)
+				})
+				console.log('end foreach loop') */
+				// console.log(tenders, 'before calling populate')
+				populateTable(tenders)
+
+
+			}
+		})
 	</script>
 </head>
 
@@ -390,61 +467,15 @@
 </body>
 <script>
 
-	var index
-	var tenders = []
 
-	fcontract_instance.getDeployedTenders(async (error, result) => {
+	function populateTable(tenders) {
+		console.log(tenders[0], 'inside populate table')
 
-		if (error) {
-			console.log("Error while getting list of deployed tenders")
-			console.log(error)
-		}
-		else {
-			//seems like adding tenders address to array named tenders
-			result.forEach(e => {
-				let p = { addr: e }
-				tenders.push(p)
-			})
-
-			// TODO setting predefined names for tender change this to fetch desc from each tender, works for now
-			/* var descpt = ['Petrol', 'Steel pipe', 'Gasoline', 'Crude oil', 'Diesel', 'Natural Gas', 'Aluminium Pipe']
-			for (var j = 0; j < tenders.length; j++) {
-				// console.log(tenders[j], j)
-				tenders[j].descp = descpt[j]
-			} */
-			try {
-				tenders.map(async (tender) => {
-					let instance = web3.eth.contract(contract_abi).at(tender.addr)
-					await instance.data((err, res) => {
-						if (err) { console.log(err) }
-						else {
-							console.log(res, 'inside map')
-							tender.descp = res
-							// return res
-						}
-					})
-					await instance.status((err, res) => {
-						if (err) { console.log(err) }
-						else {
-							console.log(res, 'inside map')
-							tender.status = res
-							// return res
-						}
-					})
-				})
-			} catch (error) {
-				console.log(error)
-			} finally {
-				console.log(tenders, 'before calling populate')
-				populateTable()
-			}
-		}
-	})
-
-	function populateTable() {
-		// console.log(tenders)
+		
 		var tendersBody = document.getElementById("tenders")
 		for (var i = 0; i < tenders.length; i++) {
+
+			console.log(Object.keys(tenders[i]).length)
 
 			tendersBody.innerHTML += tenders[i].status ?
 				"<tr data-toggle='modal' data-target='#tenderModal' onclick='tenderClicked(" + i.toString() + ")'> \
@@ -462,6 +493,7 @@
 				</tr>"
 		}
 	}
+
 	function tenderClicked(i) {
 		console.log(i)
 		index = i
