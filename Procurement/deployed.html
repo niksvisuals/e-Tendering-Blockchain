@@ -10,7 +10,7 @@
 	<link href="styles/css/app.css" rel="stylesheet">
 	<script src="scripts/web3.js/web3.min.js"></script>
 
-	<script type="text/javascript">
+	<script type="text/javascript" defer>
 		// console.log('Deployed html page')
 		window.ethereum.enable()
 
@@ -338,17 +338,42 @@
 		var index
 		var tenders = []
 
-		fcontract_instance.getDeployedTenders(async (error, result) => {
+		fcontract_instance.getDeployedTenders((error, result) => {
 
 			if (error) {
 				console.log("Error while getting list of deployed tenders")
 				console.log(error)
 			}
 			else {
+				let callbackHell = 0;
 				//seems like adding tenders address to array named tenders
 				result.forEach(e => {
+					
+					// console.log(typeof (result), 'result type')
+					// console.log(result.length)
 					let p = { addr: e }
 					tenders.push(p)
+					let instance = web3.eth.contract(contract_abi).at(e)
+					instance.data((err, res) => {
+						if (err) { console.log(err) }
+						else {
+							// console.log(res, 'inside map')
+							p.descp = res
+							// return res
+						}
+					})
+					instance.status((err, res) => {
+						if (err) { console.log(err) }
+						else {
+							// console.log(res, 'inside map')
+							p.status = res
+							callbackHell++
+							if (callbackHell == result.length) {
+								populateTable()
+							}
+							// return res
+						}
+					})
 				})
 
 				// TODO setting predefined names for tender change this to fetch desc from each tender, works for now
@@ -358,56 +383,27 @@
 					tenders[j].descp = descpt[j]
 				} */
 				//------------map
-				console.log('map start')
-				let resultsss = 	tenders.map(async(tender) => {
+				/* 	console.log('map start')
+					let resultsss = tenders.map(async (tender) => {
 						let instance = web3.eth.contract(contract_abi).at(tender.addr)
 						let descRes = await instance.data((err, res) => {
 							if (err) { console.log(err) }
 							else {
 								// console.log(res, 'inside map')
-								// tender.descp = res
-								return res
+								tender.descp = res
+								// return res
 							}
 						})
-						/* await instance.status((err, res) => {
+						await instance.status((err, res) => {
 							if (err) { console.log(err) }
 							else {
 								// console.log(res, 'inside map')
-								// tender.status = res
-								return res
+								tender.status = res
+								// return res
 							}
-						}) */
+						})
 					})
-					console.log('map end')
-				//-- forEach loop
-			/* 	console.log('start foreach loop')
-				tenders.forEach(tender => {
-					let instance = web3.eth.contract(contract_abi).at(tender.addr)
-					instance.data((err, res) => {
-						if (!err) { tender.descp = res }
-						else {
-							// console.log(res, 'inside map')
-							console.log(err)
-
-							// return res
-						}
-					})
-					instance.status((err, res) => {
-						if (!err) { tender.status = res }
-						else {
-							// console.log(res, 'inside map')
-							console.log(err)
-							tender.status = res
-							// return res
-						}
-					})
-					console.log(tender)
-				})
-				console.log('end foreach loop') */
-				// console.log(tenders, 'before calling populate')
-				populateTable(tenders)
-
-
+					console.log('map end') */
 			}
 		})
 	</script>
@@ -468,14 +464,14 @@
 <script>
 
 
-	function populateTable(tenders) {
-		console.log(tenders[0], 'inside populate table')
+	function populateTable() {
+		// console.log(tenders[0], 'inside populate table')
 
-		
+
 		var tendersBody = document.getElementById("tenders")
 		for (var i = 0; i < tenders.length; i++) {
 
-			console.log(Object.keys(tenders[i]).length)
+			// console.log(Object.keys(tenders[i]).length)
 
 			tendersBody.innerHTML += tenders[i].status ?
 				"<tr data-toggle='modal' data-target='#tenderModal' onclick='tenderClicked(" + i.toString() + ")'> \
