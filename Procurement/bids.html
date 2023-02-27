@@ -10,327 +10,271 @@
 	<script src="scripts/web3.js/web3.min.js"></script>
 
 	<script type="text/javascript">
-	 var fcontract_address = "0xD30F314d11709Fba14c2acAc619d2aCFF0e78ff4"; //this is new on deployed at https://goerli.etherscan.io/address/0xd30f314d11709fba14c2acac619d2acff0e78ff4#code
+		var fcontract_address = "0x805f3582975A867f434D28Af453f7E914ea98BF1"; //this is new on deployed at https://goerli.etherscan.io/address/0xd30f314d11709fba14c2acac619d2acff0e78ff4#code
 
-var fcontract_abi = [
-  {
-	"constant": false,
-	"inputs": [
-	  {
-		"name": "description",
-		"type": "string"
-	  }
-	],
-	"name": "createTender",
-	"outputs": [],
-	"payable": false,
-	"stateMutability": "nonpayable",
-	"type": "function"
-  },
-  {
-	"constant": true,
-	"inputs": [],
-	"name": "getDeployedTenders",
-	"outputs": [
-	  {
-		"name": "",
-		"type": "address[]"
-	  }
-	],
-	"payable": false,
-	"stateMutability": "view",
-	"type": "function"
-  },
-  {
-	"constant": true,
-	"inputs": [
-	  {
-		"name": "",
-		"type": "uint256"
-	  }
-	],
-	"name": "deployedTenders",
-	"outputs": [
-	  {
-		"name": "",
-		"type": "address"
-	  }
-	],
-	"payable": false,
-	"stateMutability": "view",
-	"type": "function"
-  }
-]
-// contract Tender abi
-var contract_abi = [
-  {
-	"constant": true,
-	"inputs": [],
-	"name": "winIndex",
-	"outputs": [
-	  {
-		"name": "",
-		"type": "uint256"
-	  }
-	],
-	"payable": false,
-	"stateMutability": "view",
-	"type": "function"
-  },
-  {
-	"constant": true,
-	"inputs": [],
-	"name": "verifyManager",
-	"outputs": [
-	  {
-		"name": "",
-		"type": "bool"
-	  }
-	],
-	"payable": false,
-	"stateMutability": "view",
-	"type": "function"
-  },
-  {
-	"constant": true,
-	"inputs": [],
-	"name": "status",
-	"outputs": [
-	  {
-		"name": "",
-		"type": "bool"
-	  }
-	],
-	"payable": false,
-	"stateMutability": "view",
-	"type": "function"
-  },
-  {
-	"constant": true,
-	"inputs": [],
-	"name": "getBidCount",
-	"outputs": [
-	  {
-		"name": "",
-		"type": "uint256"
-	  }
-	],
-	"payable": false,
-	"stateMutability": "view",
-	"type": "function"
-  },
-  {
-	"constant": false,
-	"inputs": [
-	  {
-		"name": "bidAmount",
-		"type": "uint256"
-	  },
-	  {
-		"name": "desc",
-		"type": "string"
-	  }
-	],
-	"name": "makeBid",
-	"outputs": [],
-	"payable": false,
-	"stateMutability": "nonpayable",
-	"type": "function"
-  },
-  {
-	"constant": true,
-	"inputs": [],
-	"name": "getSummary",
-	"outputs": [
-	  {
-		"name": "",
-		"type": "address"
-	  },
-	  {
-		"name": "",
-		"type": "string"
-	  },
-	  {
-		"name": "",
-		"type": "uint256"
-	  }
-	],
-	"payable": false,
-	"stateMutability": "view",
-	"type": "function"
-  },
-  {
-	"constant": true,
-	"inputs": [],
-	"name": "manager",
-	"outputs": [
-	  {
-		"name": "",
-		"type": "address"
-	  }
-	],
-	"payable": false,
-	"stateMutability": "view",
-	"type": "function"
-  },
-  {
-	"constant": true,
-	"inputs": [],
-	"name": "complete",
-	"outputs": [
-	  {
-		"name": "",
-		"type": "bool"
-	  }
-	],
-	"payable": false,
-	"stateMutability": "view",
-	"type": "function"
-  },
-  {
-	"constant": true,
-	"inputs": [],
-	"name": "data",
-	"outputs": [
-	  {
-		"name": "",
-		"type": "string"
-	  }
-	],
-	"payable": false,
-	"stateMutability": "view",
-	"type": "function"
-  },
-  {
-	"constant": true,
-	"inputs": [
-	  {
-		"name": "",
-		"type": "uint256"
-	  }
-	],
-	"name": "hiddenBids",
-	"outputs": [
-	  {
-		"name": "ID",
-		"type": "uint256"
-	  },
-	  {
-		"name": "bidAmount",
-		"type": "uint256"
-	  },
-	  {
-		"name": "bid",
-		"type": "string"
-	  }
-	],
-	"payable": false,
-	"stateMutability": "view",
-	"type": "function"
-  },
-  {
-	"constant": false,
-	"inputs": [
-	  {
-		"name": "index",
-		"type": "uint256"
-	  }
-	],
-	"name": "finalizeBid",
-	"outputs": [],
-	"payable": false,
-	"stateMutability": "nonpayable",
-	"type": "function"
-  },
-  {
-	"constant": true,
-	"inputs": [],
-	"name": "winner",
-	"outputs": [
-	  {
-		"name": "bidder",
-		"type": "address"
-	  },
-	  {
-		"name": "bidAmount",
-		"type": "uint256"
-	  },
-	  {
-		"name": "bid",
-		"type": "string"
-	  }
-	],
-	"payable": false,
-	"stateMutability": "view",
-	"type": "function"
-  },
-  {
-	"constant": true,
-	"inputs": [
-	  {
-		"name": "index",
-		"type": "uint256"
-	  }
-	],
-	"name": "getBidSummary",
-	"outputs": [
-	  {
-		"name": "",
-		"type": "address"
-	  },
-	  {
-		"name": "",
-		"type": "uint256"
-	  },
-	  {
-		"name": "",
-		"type": "string"
-	  }
-	],
-	"payable": false,
-	"stateMutability": "view",
-	"type": "function"
-  },
-  {
-	"constant": true,
-	"inputs": [],
-	"name": "verify",
-	"outputs": [],
-	"payable": false,
-	"stateMutability": "view",
-	"type": "function"
-  },
-  {
-	"inputs": [
-	  {
-		"name": "description",
-		"type": "string"
-	  },
-	  {
-		"name": "creator",
-		"type": "address"
-	  }
-	],
-	"payable": false,
-	"stateMutability": "nonpayable",
-	"type": "constructor"
-  }
-]
-window.ethereum.enable()
-if (typeof web3 !== "undefined") {
-  web3 = new Web3(web3.currentProvider);
-} else {
-  // set the provider you want from Web3.providers
-  console.log("not detected");
-  web3 = new Web3(
-	new Web3.providers.HttpProvider("http://localhost:7545")
-  );
-}
+		var fcontract_abi = [
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "description",
+						"type": "string"
+					}
+				],
+				"name": "createTender",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "deployedTenders",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "getDeployedTenders",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			}
+		]
 
-var fcontract_instance;
-fcontract_instance = web3.eth
-  .contract(fcontract_abi)
-  .at(fcontract_address);
+		// contract Tender abi
+		var contract_abi = [
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "winIndex",
+				"outputs": [
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "verifyManager",
+				"outputs": [
+					{
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "status",
+				"outputs": [
+					{
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "getBidCount",
+				"outputs": [
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "bidAmount",
+						"type": "uint256"
+					},
+					{
+						"name": "desc",
+						"type": "string"
+					}
+				],
+				"name": "makeBid",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "getSummary",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address"
+					},
+					{
+						"name": "",
+						"type": "string"
+					},
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "data",
+				"outputs": [
+					{
+						"name": "",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "finalizeBid",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "winner",
+				"outputs": [
+					{
+						"name": "bidder",
+						"type": "address"
+					},
+					{
+						"name": "bidAmount",
+						"type": "uint256"
+					},
+					{
+						"name": "bid",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "getBidSummary",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address"
+					},
+					{
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"name": "",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"name": "creator",
+						"type": "address"
+					}
+				],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			}
+		]
+
+		window.ethereum.enable()
+		if (typeof web3 !== "undefined") {
+			web3 = new Web3(web3.currentProvider);
+		} else {
+			// set the provider you want from Web3.providers
+			console.log("not detected");
+			web3 = new Web3(
+				new Web3.providers.HttpProvider("http://localhost:7545")
+			);
+		}
+
+		var fcontract_instance;
+		fcontract_instance = web3.eth
+			.contract(fcontract_abi)
+			.at(fcontract_address);
 	</script>
 	<style>
 		.finalize {
@@ -358,8 +302,8 @@ fcontract_instance = web3.eth
 		</table>
 		<div class="content">
 			<div class="finalize">
-				<input id="finalIndex" type="text" class="form-control" placeholder="Enter Bidder Address" aria-label="Username"
-					aria-describedby="basic-addon1" /><br />
+				<input id="finalIndex" type="text" class="form-control" placeholder="Enter Bidder Address"
+					aria-label="Username" aria-describedby="basic-addon1" /><br />
 				<button type="button" onclick="finalizeBid()" class="btn btn-primary">Finalize</button>
 			</div>
 			<button style="display:none" type="button" onclick="addAddr()" data-toggle="modal" data-target="#bidModal"
@@ -404,18 +348,17 @@ fcontract_instance = web3.eth
 										aria-label="Item ID" aria-describedby="basic-addon1" />
 								</div>
 								<div class="input-group mb-3">
-									<input id="inputBidaddr" type="text" class="form-control"
+									<input disabled id="inputBidaddr" type="text" class="form-control"
 										placeholder="Vendor Address" aria-label="Username"
 										aria-describedby="basic-addon1" value="" />
 								</div>
 								<div class="input-group mb-3">
-									<input id="inputEmailAddress" type="email" class="form-control"
-										placeholder="Email" aria-label="Username" aria-describedby="basic-addon1" />
+									<input id="inputEmailAddress" type="email" class="form-control" placeholder="Email"
+										aria-label="Username" aria-describedby="basic-addon1" />
 								</div>
 								<div class="input-group mb-3">
-									<input id="inputAmt" type="text" class="form-control"
-										placeholder="Quotation" aria-label="Username"
-										aria-describedby="basic-addon1" />
+									<input disabled id="inputAmt" type="text" class="form-control" placeholder="Quotation"
+										aria-label="Username" aria-describedby="basic-addon1" />
 								</div>
 							</div>
 							<div class="modal-footer">
@@ -461,14 +404,14 @@ fcontract_instance = web3.eth
 	var l;
 	function setAddr() {
 		contract_address = document.getElementById("address").value;
-		console.log(contract_address);
+		// console.log(contract_address);
 		contract_instance = web3.eth
 			.contract(contract_abi)
 			.at(contract_address);
 		contract_instance.getBidCount(function (error, result) {
 			if (error) {
 				console.log("sd");
-				console.error(error);
+				console.log(error.data.message);
 			}
 			else {
 				// console.log(result, 'result bid count')
@@ -476,9 +419,9 @@ fcontract_instance = web3.eth
 				l = result.c[0];
 				getBids();
 			}
-			setTimeout(function () {
-				populateBids();
-			}, 500);
+				setTimeout(function () {
+					populateBids();
+				}, 500);
 		})
 	}
 	function addAddr() {
@@ -489,15 +432,15 @@ fcontract_instance = web3.eth
 	function getBids() {
 		for (var i = 0; i < l; i++) {
 			let bid;
-			contract_instance.getBidSummary(i, function (error, result) {
+			contract_instance.getBidSummary(i, { from: web3.eth.accounts[0] }, function (error, result) {
 				if (error) {
 					console.log("sd");
-					console.error(error);
+					console.log(error.data.message);
 				}
 				else {
 					console.log(result, "dff");
 					//result 0 is bidders address,
-					let bid = { index: result[0], amt: result[1].c[0], descp: result[2], id:i-1 };
+					let bid = { index: result[0], amt: result[1].c[0], descp: result[2], id: i - 1 };
 					bids.push(bid);
 				}
 			})
@@ -535,13 +478,13 @@ fcontract_instance = web3.eth
 		// console.log(index.value)
 		let obj = bids.find(o => o.index == index.value);
 		console.log(obj.id, 'bid index')
-		
+
 		await contract_instance.finalizeBid(
 			obj.id,
 			{ from: web3.eth.accounts[0] },
 			function (error, result) {
 				if (error) {
-					console.error(error);
+					console.log(error.data.message);
 				} else {
 					var txHash = result;
 					console.log(txHash, 'tx hash');
@@ -558,7 +501,7 @@ fcontract_instance = web3.eth
 	function callWhenMined(txHash, callback) {
 		web3.eth.getTransactionReceipt(txHash, function (error, rcpt) {
 			if (error) {
-				console.error(error);
+				console.log(error.data.message);
 			} else {
 				if (rcpt == null) {
 					setTimeout(function () {

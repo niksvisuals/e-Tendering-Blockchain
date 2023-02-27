@@ -6,7 +6,7 @@ let promise = new Promise(function(resolve, reject) {
             {
                 console.log(result);
                 if (error) {
-                    console.error(error);
+                    console.log(error.data.message);
                     reject("Error")
                 }
                 else
@@ -32,7 +32,7 @@ let promise = new Promise(function(resolve, reject) {
             contract_instance.setMyNumber(currentNumber, {from: web3.eth.accounts[0]}, function (error, result) {
                 if (error) {
 
-                    console.error(error);
+                    console.log(error.data.message);
                 } else {
                     var txHash = result;
                     console.log(txHash);
