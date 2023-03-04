@@ -2,7 +2,7 @@
 
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>GAIL</title>
+	<title>G.o.I</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
@@ -10,7 +10,7 @@
 	<script src="scripts/web3.js/web3.min.js"></script>
 
 	<script type="text/javascript">
-		var fcontract_address = "0x805f3582975A867f434D28Af453f7E914ea98BF1"; //this is new on deployed at https://goerli.etherscan.io/address/0xd30f314d11709fba14c2acac619d2acff0e78ff4#code
+		var fcontract_address = "0xff4223EA043DaA2B43BEE0d20169D2035c6b5e2e"; //this is new on deployed at https://goerli.etherscan.io/address/0xd30f314d11709fba14c2acac619d2acff0e78ff4#code
 
 		var fcontract_abi = [
 			{
@@ -438,7 +438,7 @@
 					console.log(error.data.message);
 				}
 				else {
-					console.log(result, "dff");
+					// console.log(result, "dff");
 					//result 0 is bidders address,
 					let bid = { index: result[0], amt: result[1].c[0], descp: result[2], id: i - 1 };
 					bids.push(bid);
@@ -468,7 +468,7 @@
 		// console.log("populate", bids);
 		var bidsBody = document.getElementById("bidss");
 		bids.forEach(e => {
-			console.log(e);
+			// console.log(e);
 			bidsBody.innerHTML += "<tr data-toggle='modal' data-target='#tenderModal' ><td><input id='" + e.index + "' onclick='indexClicked(this.id)' style='background-color:transparent;border;none' value='" + e.index + "'/></td><td>" + e.amt.toString() + "</td><td>" + e.descp + "</td><td></td></tr>";
 		});
 	}
