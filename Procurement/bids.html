@@ -10,9 +10,23 @@
 	<script src="scripts/web3.js/web3.min.js"></script>
 
 	<script type="text/javascript">
-		var fcontract_address = "0xff4223EA043DaA2B43BEE0d20169D2035c6b5e2e"; //this is new on deployed at https://goerli.etherscan.io/address/0xd30f314d11709fba14c2acac619d2acff0e78ff4#code
+		var fcontract_address = '0x33887aEdE10791055577B572E8CbB1D78f81e14C'
 
 		var fcontract_abi = [
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "addVoteManager",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
 			{
 				"constant": false,
 				"inputs": [
@@ -35,25 +49,6 @@
 			},
 			{
 				"constant": true,
-				"inputs": [
-					{
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "deployedTenders",
-				"outputs": [
-					{
-						"name": "",
-						"type": "address"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": true,
 				"inputs": [],
 				"name": "getDeployedTenders",
 				"outputs": [
@@ -73,11 +68,19 @@
 			{
 				"constant": true,
 				"inputs": [],
-				"name": "winIndex",
+				"name": "selectedBid",
 				"outputs": [
 					{
-						"name": "",
+						"name": "bidder",
+						"type": "address"
+					},
+					{
+						"name": "bidAmount",
 						"type": "uint256"
+					},
+					{
+						"name": "bid",
+						"type": "string"
 					}
 				],
 				"payable": false,
@@ -145,25 +148,26 @@
 				"type": "function"
 			},
 			{
-				"constant": true,
+				"constant": false,
 				"inputs": [],
-				"name": "getSummary",
-				"outputs": [
+				"name": "calcWinner",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
 					{
-						"name": "",
-						"type": "address"
-					},
-					{
-						"name": "",
-						"type": "string"
-					},
-					{
-						"name": "",
+						"name": "_index",
 						"type": "uint256"
 					}
 				],
+				"name": "selectedBidFun",
+				"outputs": [],
 				"payable": false,
-				"stateMutability": "view",
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -184,12 +188,17 @@
 				"constant": false,
 				"inputs": [
 					{
-						"name": "index",
+						"name": "_vote",
 						"type": "uint256"
 					}
 				],
-				"name": "finalizeBid",
-				"outputs": [],
+				"name": "voteByManager",
+				"outputs": [
+					{
+						"name": "",
+						"type": "bool"
+					}
+				],
 				"payable": false,
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -218,13 +227,49 @@
 			},
 			{
 				"constant": true,
+				"inputs": [],
+				"name": "selectedBidIsSet",
+				"outputs": [
+					{
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "getTenderSummary",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address"
+					},
+					{
+						"name": "",
+						"type": "string"
+					},
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
 				"inputs": [
 					{
 						"name": "index",
 						"type": "uint256"
 					}
 				],
-				"name": "getBidSummary",
+				"name": "getSingleBid",
 				"outputs": [
 					{
 						"name": "",
@@ -252,6 +297,10 @@
 					{
 						"name": "creator",
 						"type": "address"
+					},
+					{
+						"name": "_voteManager",
+						"type": "address[]"
 					}
 				],
 				"payable": false,
@@ -304,7 +353,7 @@
 			<div class="finalize">
 				<input id="finalIndex" type="text" class="form-control" placeholder="Enter Bidder Address"
 					aria-label="Username" aria-describedby="basic-addon1" /><br />
-				<button type="button" onclick="finalizeBid()" class="btn btn-primary">Finalize</button>
+				<button type="button" onclick="shortlistBidder()" class="btn btn-primary">Shortlist this Bidder</button>
 			</div>
 			<button style="display:none" type="button" onclick="addAddr()" data-toggle="modal" data-target="#bidModal"
 				class="btn btn-primary" id="myCheck">Finalize</button>
@@ -357,8 +406,8 @@
 										aria-label="Username" aria-describedby="basic-addon1" />
 								</div>
 								<div class="input-group mb-3">
-									<input disabled id="inputAmt" type="text" class="form-control" placeholder="Quotation"
-										aria-label="Username" aria-describedby="basic-addon1" />
+									<input disabled id="inputAmt" type="text" class="form-control"
+										placeholder="Quotation" aria-label="Username" aria-describedby="basic-addon1" />
 								</div>
 							</div>
 							<div class="modal-footer">
@@ -419,9 +468,9 @@
 				l = result.c[0];
 				getBids();
 			}
-				setTimeout(function () {
-					populateBids();
-				}, 500);
+			setTimeout(function () {
+				populateBids();
+			}, 500);
 		})
 	}
 	function addAddr() {
@@ -432,7 +481,7 @@
 	function getBids() {
 		for (var i = 0; i < l; i++) {
 			let bid;
-			contract_instance.getBidSummary(i, { from: web3.eth.accounts[0] }, function (error, result) {
+			contract_instance.getSingleBid(i, { from: web3.eth.accounts[0] }, function (error, result) {
 				if (error) {
 					console.log("sd");
 					console.log(error.data.message);
@@ -472,8 +521,26 @@
 			bidsBody.innerHTML += "<tr data-toggle='modal' data-target='#tenderModal' ><td><input id='" + e.index + "' onclick='indexClicked(this.id)' style='background-color:transparent;border;none' value='" + e.index + "'/></td><td>" + e.amt.toString() + "</td><td>" + e.descp + "</td><td></td></tr>";
 		});
 	}
-
-	async function finalizeBid() {
+	function shortlistBidder() {
+		console.log('inside short list')
+		index = document.getElementById("finalIndex");
+		let obj = bids.find(o => o.index == index.value);
+		console.log(obj.id, 'bid index')
+		contract_instance.selectedBidFun(
+			obj.id,
+			{ from: web3.eth.accounts[0] },
+			function (error, result) {
+				if (error) {
+					console.log(error.data.message);
+				} else {
+					var txHash = result;
+					console.log(txHash, 'selected bid tx hash');
+					callWhenMined(txHash, mined);
+				}
+			}
+		)
+	}
+	/* async function finalizeBid() {
 		index = document.getElementById("finalIndex");
 		// console.log(index.value)
 		let obj = bids.find(o => o.index == index.value);
@@ -494,7 +561,7 @@
 		);
 
 		document.getElementById("finalIndex").value = "";
-	}
+	} */
 	function mined() {
 		console.log("Mined");
 	}

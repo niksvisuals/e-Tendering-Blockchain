@@ -1,377 +1,526 @@
 <html>
 
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>G.o.I</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-  <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet" />
-  <link href="styles/css/app.css" rel="stylesheet" />
-  <script src="scripts/web3.js/web3.min.js"></script>
-  <script src="scripts/custom/qrcode.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>G.o.I</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet" />
+	<link href="styles/css/app.css" rel="stylesheet" />
+	<script src="scripts/web3.js/web3.min.js"></script>
+	<script src="scripts/custom/qrcode.js"></script>
 
-  <script type="text/javascript">
-    var fcontract_address = "0xff4223EA043DaA2B43BEE0d20169D2035c6b5e2e"; //this is new on deployed at https://goerli.etherscan.io/address/0xd30f314d11709fba14c2acac619d2acff0e78ff4#code
+	<script type="text/javascript">
+		var fcontract_address = '0x33887aEdE10791055577B572E8CbB1D78f81e14C'
 
-    var fcontract_abi = [
-	{
-		"constant": false,
-		"inputs": [
+		var fcontract_abi = [
 			{
-				"name": "description",
-				"type": "string"
-			}
-		],
-		"name": "createTender",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "deployedTenders",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getDeployedTenders",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	}
-]
-  
-    // contract Tender abi
-    var contract_abi = [
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "winIndex",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "verifyManager",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "status",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getBidCount",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "bidAmount",
-				"type": "uint256"
+				"constant": false,
+				"inputs": [
+					{
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "addVoteManager",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
 			},
 			{
-				"name": "desc",
-				"type": "string"
-			}
-		],
-		"name": "makeBid",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getSummary",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
+				"constant": false,
+				"inputs": [
+					{
+						"name": "description",
+						"type": "string"
+					}
+				],
+				"name": "createTender",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
 			},
 			{
-				"name": "",
-				"type": "string"
+				"inputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "constructor"
 			},
 			{
-				"name": "",
-				"type": "uint256"
+				"constant": true,
+				"inputs": [],
+				"name": "getDeployedTenders",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
 			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "data",
-		"outputs": [
-			{
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"name": "finalizeBid",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "winner",
-		"outputs": [
-			{
-				"name": "bidder",
-				"type": "address"
-			},
-			{
-				"name": "bidAmount",
-				"type": "uint256"
-			},
-			{
-				"name": "bid",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"name": "getBidSummary",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			},
-			{
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"name": "description",
-				"type": "string"
-			},
-			{
-				"name": "creator",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	}
-]
-  
-    window.ethereum.enable()
-    if (typeof web3 !== "undefined") {
-      web3 = new Web3(web3.currentProvider);
-    } else {
-      // set the provider you want from Web3.providers
-      console.log("not detected");
-      web3 = new Web3(
-        new Web3.providers.HttpProvider("http://localhost:7545")
-      );
-    }
+		]
 
-    var fcontract_instance;
-    fcontract_instance = web3.eth
-      .contract(fcontract_abi)
-      .at(fcontract_address);
+		// contract Tender abi
+		var contract_abi = [
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "selectedBid",
+				"outputs": [
+					{
+						"name": "bidder",
+						"type": "address"
+					},
+					{
+						"name": "bidAmount",
+						"type": "uint256"
+					},
+					{
+						"name": "bid",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "verifyManager",
+				"outputs": [
+					{
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "status",
+				"outputs": [
+					{
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "getBidCount",
+				"outputs": [
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "bidAmount",
+						"type": "uint256"
+					},
+					{
+						"name": "desc",
+						"type": "string"
+					}
+				],
+				"name": "makeBid",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [],
+				"name": "calcWinner",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "_index",
+						"type": "uint256"
+					}
+				],
+				"name": "selectedBidFun",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "data",
+				"outputs": [
+					{
+						"name": "",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "_vote",
+						"type": "uint256"
+					}
+				],
+				"name": "voteByManager",
+				"outputs": [
+					{
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "winner",
+				"outputs": [
+					{
+						"name": "bidder",
+						"type": "address"
+					},
+					{
+						"name": "bidAmount",
+						"type": "uint256"
+					},
+					{
+						"name": "bid",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "selectedBidIsSet",
+				"outputs": [
+					{
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "getTenderSummary",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address"
+					},
+					{
+						"name": "",
+						"type": "string"
+					},
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "getSingleBid",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address"
+					},
+					{
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"name": "",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"name": "creator",
+						"type": "address"
+					},
+					{
+						"name": "_voteManager",
+						"type": "address[]"
+					}
+				],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			}
+		]
+
+		window.ethereum.enable()
+		if (typeof web3 !== "undefined") {
+			web3 = new Web3(web3.currentProvider);
+		} else {
+			// set the provider you want from Web3.providers
+			console.log("not detected");
+			web3 = new Web3(
+				new Web3.providers.HttpProvider("http://localhost:7545")
+			);
+		}
+
+		var fcontract_instance;
+		fcontract_instance = web3.eth
+			.contract(fcontract_abi)
+			.at(fcontract_address);
       // console.log(fcontract_instance.createTender('tender 2'))
-  </script>
+	</script>
 </head>
 
 <body>
-  <div class="home">
-    <div class="topbar">
-      MANAGER
-    </div>
-    <div class="content">
-      <div class="btn-wrapper">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tenderModal">
-          CREATE TENDER
-        </button>
-      </div>
-      <div class="btn-wrapper">
-        <button id="bids" type="button" class="btn btn-primary">
-          SEE BIDS MADE
-        </button>
-      </div>
-    </div>
-    <div class="modal fade" id="tenderModal" tabindex="-1" role="dialog" aria-labelledby="tenderModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">CREATE TENDER</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="input-group mb-3">
-              <textarea id="descp" type="text" class="form-control" placeholder="Description" aria-label="Item ID"
-                aria-describedby="basic-addon1"></textarea>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">
-              Close
-            </button>
-            <button type="button" class="btn btn-primary" onclick="createTender()" data-dismiss="modal">
-              Submit
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="home">
+		<div class="topbar">
+			MANAGER
+		</div>
+		<div class="content">
+			<div class="btn-wrapper">
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tenderModal">
+					CREATE TENDER
+				</button>
+			</div>
+			<div class="btn-wrapper">
+				<button id="bids" type="button" class="btn btn-primary">
+					SEE BIDS MADE
+				</button>
+			</div>
+			<div class="btn-wrapper">
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adminModal">
+					ADD MANAGER
+				</button>
+			</div>
+			<div class="btn-wrapper">
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#findWinnerModal">
+					Declare Result for a Tender
+				</button>
+			</div>
+		</div>
+		<div class="modal fade" id="tenderModal" tabindex="-1" role="dialog" aria-labelledby="tenderModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">CREATE TENDER</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="input-group mb-3">
+							<textarea id="descp" type="text" class="form-control" placeholder="Description"
+								aria-label="Item ID" aria-describedby="basic-addon1"></textarea>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">
+							Close
+						</button>
+						<button type="button" class="btn btn-primary" onclick="createTender()" data-dismiss="modal">
+							Submit
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="adminModal" tabindex="-1" role="dialog" aria-labelledby="adminModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modalLabel">ADD NEW MANAGER FOR VOTING</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="input-group mb-3">
+							<input id="adminLabel" type="text" class="form-control" placeholder="Address" aria-label=""
+								aria-describedby="basic-addon1"></input>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">
+							Close
+						</button>
+						<button type="button" class="btn btn-primary" onclick="addAdminHandler()" data-dismiss="modal">
+							Submit
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="findWinnerModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="winner">Tender Address</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="input-group mb-3">
+							<input id="winnerLabel" type="text" class="form-control" placeholder="Address" aria-label=""
+								></input>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">
+							Close
+						</button>
+						<button type="button" class="btn btn-primary" onclick="findWinnerHandler()"
+							data-dismiss="modal">
+							Find Winner
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 <script>
-  function createTender() {
-    var descp = document.getElementById("descp").value;
-    console.log(descp);
-    console.log(web3.eth.accounts, 'eth accounts')
-    fcontract_instance.createTender(
-      descp,
-      { from: web3.eth.accounts[0] },
-      function (error, result) {
-        if (error) {
-          console.log(error.data.message);
-        } else {
-          var txHash = result;
-          console.log(txHash, 'transaction hash');
-          callWhenMined(txHash, mined);
-        }
-      }
-    );
+	// const contract_instance=new Object();
+	//TODO calculate winner for particular tender
+	function findWinnerHandler() {
+		const tenderAddr = document.getElementById("winnerLabel").value;
+		// console.log(web3.isAddress(tenderAddr))
+		// console.log(tenderAddr)
+		const contract_instance = web3.eth
+			.contract(contract_abi)
+			.at(tenderAddr);
+		contract_instance.calcWinner((error, result)=>{
+			if(error){
+				console.log(error)
+			}else{
+				var txHash = result;
+				console.log(txHash, 'calculate winner transaction hash');
+				callWhenMined(txHash, mined);
+			}
+		})
+	}
+	function addAdminHandler() {
+		var adminAddr = document.getElementById("adminLabel").value;
+		fcontract_instance.addVoteManager(adminAddr, { from: web3.eth.accounts[0] }, function (error, result) {
+			if (error) {
+				console.log(error.data.message);
+			} else {
+				var txHash = result;
+				console.log(txHash, 'admin added transaction hash');
+				callWhenMined(txHash, mined);
+			}
+		})
+		document.getElementById("adminLabel").value = "";
 
-    function mined() {
-      console.log("Mined");
-    }
-    function callWhenMined(txHash, callback) {
-      web3.eth.getTransactionReceipt(txHash, function (error, rcpt) {
-        if (error) {
-          console.log(error.data.message);
-        } else {
-          if (rcpt == null) {
-            setTimeout(function () {
-              callWhenMined(txHash, callback);
-            }, 500);
-          } else {
-            callback();
-          }
-        }
-      });
-    }
-    document.getElementById("descp").value = "";
-  }
+	}
+	function createTender() {
+		var descp = document.getElementById("descp").value;
+		// console.log(descp);
+		// console.log(web3.eth.accounts, 'eth accounts')
+		fcontract_instance.createTender(
+			descp,
+			{ from: web3.eth.accounts[0] },
+			function (error, result) {
+				if (error) {
+					console.log(error.data.message);
+				} else {
+					var txHash = result;
+					console.log(txHash, 'transaction hash');
+					callWhenMined(txHash, mined);
+				}
+			}
+		);
+		document.getElementById("descp").value = "";
+	}
+
+	function mined() {
+		console.log("Mined");
+	}
+	function callWhenMined(txHash, callback) {
+		web3.eth.getTransactionReceipt(txHash, function (error, rcpt) {
+			if (error) {
+				console.log(error.data.message);
+			} else {
+				if (rcpt == null) {
+					setTimeout(function () {
+						callWhenMined(txHash, callback);
+					}, 500);
+				} else {
+					callback();
+				}
+			}
+		});
+	}
 </script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
 <script src="scripts/custom/index.js"></script>
 <script src="scripts/jquery/jquery.min.js"></script>
 

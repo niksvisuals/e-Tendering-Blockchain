@@ -133,6 +133,10 @@ contract Tender {
         require(selectedBid.bidder == address(0), "Selected Bid is already set.");
         selectedBid = bids[_index];
     }
+//check if the bid is selected by admin only then show the option to vote in frontend
+    function selectedBidIsSet()public view returns (bool){
+        return selectedBid.bidder != address(0);
+    }
 
     //managers cast their vote for the selected bid
     function voteByManager(uint256 _vote) public returns (bool) {
