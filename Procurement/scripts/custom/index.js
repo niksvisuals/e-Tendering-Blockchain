@@ -8,4 +8,7 @@ $(document).ready(function () {
   $("#bids").click(() => {
     window.location.href = "./bids.html"
   })
+  $("#voters").click(() => {
+    window.location.href = "./vote.html"
+  })
 })

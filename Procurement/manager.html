@@ -421,8 +421,8 @@
 					</div>
 					<div class="modal-body">
 						<div class="input-group mb-3">
-							<input id="winnerLabel" type="text" class="form-control" placeholder="Address" aria-label=""
-								></input>
+							<input id="winnerLabel" type="text" class="form-control" placeholder="Address"
+								aria-label=""></input>
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -449,15 +449,27 @@
 		const contract_instance = web3.eth
 			.contract(contract_abi)
 			.at(tenderAddr);
-		contract_instance.calcWinner((error, result)=>{
-			if(error){
-				console.log(error)
-			}else{
-				var txHash = result;
-				console.log(txHash, 'calculate winner transaction hash');
-				callWhenMined(txHash, mined);
-			}
-		})
+		try {
+			contract_instance.calcWinner.call({ from: web3.eth.accounts[0] }, (err, result) => {
+				if (err) {
+					console.log(err.data.message)
+				} else {
+					contract_instance.calcWinner.sendTransaction({ from: web3.eth.accounts[0] }, (error, result) => {
+						if (error) {
+							console.log(error)
+						} else {
+							// var txHash = result;
+							// console.log(txHash, 'calculate winner transaction hash');
+							callWhenMined(result, mined);
+						}
+					})
+				}
+			})
+		} catch (e) {
+			console.log(e)
+			console.log('error while calculating winner')
+		}
+
 	}
 	function addAdminHandler() {
 		var adminAddr = document.getElementById("adminLabel").value;
@@ -466,7 +478,7 @@
 				console.log(error.data.message);
 			} else {
 				var txHash = result;
-				console.log(txHash, 'admin added transaction hash');
+				// console.log(txHash, 'admin added transaction hash');
 				callWhenMined(txHash, mined);
 			}
 		})
@@ -494,7 +506,7 @@
 	}
 
 	function mined() {
-		console.log("Mined");
+		console.log("Transaction Mined");
 	}
 	function callWhenMined(txHash, callback) {
 		web3.eth.getTransactionReceipt(txHash, function (error, rcpt) {
@@ -502,11 +514,18 @@
 				console.log(error.data.message);
 			} else {
 				if (rcpt == null) {
-					setTimeout(function () {
+					console.log('failed to retrieve trx receipt')
+					/* setTimeout(function () {
 						callWhenMined(txHash, callback);
-					}, 500);
+					}, 500); */
 				} else {
-					callback();
+					if (rcpt.status === '0x0') {
+						console.log('tx failed')
+					} else {
+
+						// console.log(rcpt, 'tx receipt')	
+						callback();
+					}
 				}
 			}
 		});
