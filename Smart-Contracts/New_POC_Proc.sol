@@ -21,6 +21,7 @@ contract tenderFactory {
             "You are not authorised to add managers."
         );
         require(voteManagers.length != 3, "Only 3 managers are allowed.");
+        //flaw same address can be added as admin 3 times
         voteManagers.push(_address);
     }
 
@@ -178,6 +179,9 @@ contract Tender {
             delete selectedBid;
             //reset votes to 0
             delete votes;
+            for (uint256 j = 0; j < voteManager.length; j++) {
+                delete votedOrNot[voteManager[j]];
+            }
         }
     }
 

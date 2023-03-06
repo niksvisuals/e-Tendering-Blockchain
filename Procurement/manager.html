@@ -2,7 +2,7 @@
 
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>G.o.I</title>
+	<title>Admin - G.o.I</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet" />
@@ -11,7 +11,7 @@
 	<script src="scripts/custom/qrcode.js"></script>
 
 	<script type="text/javascript">
-		var fcontract_address = '0x33887aEdE10791055577B572E8CbB1D78f81e14C'
+		var fcontract_address = '0x09B3B0AF7e69af82Db2D7B8ce6A0A897B049f534'
 
 		var fcontract_abi = [
 			{
@@ -332,7 +332,7 @@
 <body>
 	<div class="home">
 		<div class="topbar">
-			MANAGER
+			Admin
 		</div>
 		<div class="content">
 			<div class="btn-wrapper">
@@ -352,7 +352,7 @@
 			</div>
 			<div class="btn-wrapper">
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#findWinnerModal">
-					Declare Result for a Tender
+					DECLARE RESULT for TENDER
 				</button>
 			</div>
 		</div>
@@ -450,7 +450,7 @@
 			.contract(contract_abi)
 			.at(tenderAddr);
 		try {
-			contract_instance.calcWinner.call({ from: web3.eth.accounts[0] }, (err, result) => {
+			contract_instance.calcWinner.call({ from: web3.eth.accounts[0], gas:3000000, gasPrice:10 }, (err, result) => {
 				if (err) {
 					console.log(err.data.message)
 				} else {

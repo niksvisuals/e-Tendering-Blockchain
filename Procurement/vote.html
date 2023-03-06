@@ -12,7 +12,7 @@
     <script src="scripts/custom/qrcode.js"></script>
 
     <script type="text/javascript">
-        var fcontract_address = '0x33887aEdE10791055577B572E8CbB1D78f81e14C'
+        var fcontract_address = '0x09B3B0AF7e69af82Db2D7B8ce6A0A897B049f534'
 
         var fcontract_abi = [
             {
@@ -344,6 +344,17 @@
                     let p = { addr: e }
                     tenders.push(p)
                     let instance = web3.eth.contract(contract_abi).at(e)
+                    
+                    instance.status((err, res)=>{
+                        if(err){
+                            console.log(err, 'err while getting stauts')
+                        }else{
+                            
+                                p.over = res;
+                            
+                        }
+                    })
+                    
                     instance.data((err, res) => {
                         if (err) { console.log(err) }
                         else {
@@ -387,7 +398,7 @@
 
                 // console.log(Object.keys(tenders[i]).length)
 
-                tendersBody.innerHTML += tenders[i].status ?
+                tendersBody.innerHTML += tenders[i].status && !tenders[i].over ? //selected bid is true and winner is not declared
                     "<tr> \
 					<td>" + (i + 1).toString() + "</td> \
 					<td>" + tenders[i].addr + "</td> \
