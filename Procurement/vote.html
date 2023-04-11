@@ -12,305 +12,452 @@
     <script src="scripts/custom/qrcode.js"></script>
 
     <script type="text/javascript">
-        var fcontract_address = '0x09B3B0AF7e69af82Db2D7B8ce6A0A897B049f534'
+        var fcontract_address = '0x984E3B8275D56aCdF81d8B5EEA9177c7753Eb7E6'
 
         var fcontract_abi = [
-            {
-                "constant": false,
-                "inputs": [
-                    {
-                        "name": "_address",
-                        "type": "address"
-                    }
-                ],
-                "name": "addVoteManager",
-                "outputs": [],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "constant": false,
-                "inputs": [
-                    {
-                        "name": "description",
-                        "type": "string"
-                    }
-                ],
-                "name": "createTender",
-                "outputs": [],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "constructor"
-            },
-            {
-                "constant": true,
-                "inputs": [],
-                "name": "getDeployedTenders",
-                "outputs": [
-                    {
-                        "name": "",
-                        "type": "address[]"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            }
-        ]
-
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_address",
+				"type": "address"
+			}
+		],
+		"name": "addVoteManager",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "description",
+				"type": "string"
+			}
+		],
+		"name": "createTender",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getDeployedTenders",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
         // contract Tender abi
         var contract_abi = [
-            {
-                "constant": true,
-                "inputs": [],
-                "name": "selectedBid",
-                "outputs": [
-                    {
-                        "name": "bidder",
-                        "type": "address"
-                    },
-                    {
-                        "name": "bidAmount",
-                        "type": "uint256"
-                    },
-                    {
-                        "name": "bid",
-                        "type": "string"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "constant": true,
-                "inputs": [],
-                "name": "verifyManager",
-                "outputs": [
-                    {
-                        "name": "",
-                        "type": "bool"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "constant": true,
-                "inputs": [],
-                "name": "status",
-                "outputs": [
-                    {
-                        "name": "",
-                        "type": "bool"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "constant": true,
-                "inputs": [],
-                "name": "getBidCount",
-                "outputs": [
-                    {
-                        "name": "",
-                        "type": "uint256"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "constant": false,
-                "inputs": [
-                    {
-                        "name": "bidAmount",
-                        "type": "uint256"
-                    },
-                    {
-                        "name": "desc",
-                        "type": "string"
-                    }
-                ],
-                "name": "makeBid",
-                "outputs": [],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "constant": false,
-                "inputs": [],
-                "name": "calcWinner",
-                "outputs": [],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "constant": false,
-                "inputs": [
-                    {
-                        "name": "_index",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "selectedBidFun",
-                "outputs": [],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "constant": true,
-                "inputs": [],
-                "name": "data",
-                "outputs": [
-                    {
-                        "name": "",
-                        "type": "string"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "constant": false,
-                "inputs": [
-                    {
-                        "name": "_vote",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "voteByManager",
-                "outputs": [
-                    {
-                        "name": "",
-                        "type": "bool"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "constant": true,
-                "inputs": [],
-                "name": "winner",
-                "outputs": [
-                    {
-                        "name": "bidder",
-                        "type": "address"
-                    },
-                    {
-                        "name": "bidAmount",
-                        "type": "uint256"
-                    },
-                    {
-                        "name": "bid",
-                        "type": "string"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "constant": true,
-                "inputs": [],
-                "name": "selectedBidIsSet",
-                "outputs": [
-                    {
-                        "name": "",
-                        "type": "bool"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "constant": true,
-                "inputs": [],
-                "name": "getTenderSummary",
-                "outputs": [
-                    {
-                        "name": "",
-                        "type": "address"
-                    },
-                    {
-                        "name": "",
-                        "type": "string"
-                    },
-                    {
-                        "name": "",
-                        "type": "uint256"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "constant": true,
-                "inputs": [
-                    {
-                        "name": "index",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "getSingleBid",
-                "outputs": [
-                    {
-                        "name": "",
-                        "type": "address"
-                    },
-                    {
-                        "name": "",
-                        "type": "uint256"
-                    },
-                    {
-                        "name": "",
-                        "type": "string"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [
-                    {
-                        "name": "description",
-                        "type": "string"
-                    },
-                    {
-                        "name": "creator",
-                        "type": "address"
-                    },
-                    {
-                        "name": "_voteManager",
-                        "type": "address[]"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "constructor"
-            }
-        ]
-
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_preferences",
+				"type": "uint256[]"
+			}
+		],
+		"name": "castVote",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "bidAmount",
+				"type": "uint256"
+			},
+			{
+				"name": "desc",
+				"type": "string"
+			}
+		],
+		"name": "makeBid",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"components": [
+					{
+						"name": "bidder",
+						"type": "address"
+					},
+					{
+						"name": "bidAmount",
+						"type": "uint256"
+					},
+					{
+						"name": "bid",
+						"type": "string"
+					}
+				],
+				"name": "_bids",
+				"type": "tuple[]"
+			}
+		],
+		"name": "setShortlistedBids",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"components": [
+					{
+						"name": "bidder",
+						"type": "address"
+					},
+					{
+						"name": "bidAmount",
+						"type": "uint256"
+					},
+					{
+						"name": "bid",
+						"type": "string"
+					}
+				],
+				"name": "_winner",
+				"type": "tuple"
+			}
+		],
+		"name": "setWinnerBid",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"name": "description",
+				"type": "string"
+			},
+			{
+				"name": "creator",
+				"type": "address"
+			},
+			{
+				"name": "_voteManager",
+				"type": "address[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "areBidsShortListed",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "bids",
+		"outputs": [
+			{
+				"name": "bidder",
+				"type": "address"
+			},
+			{
+				"name": "bidAmount",
+				"type": "uint256"
+			},
+			{
+				"name": "bid",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "data",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getBidCount",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "voter",
+				"type": "address"
+			}
+		],
+		"name": "getPreferencesList",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getShortlistedBidsCount",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getSingleBid",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getTenderSummary",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "shortlistedBids",
+		"outputs": [
+			{
+				"name": "bidder",
+				"type": "address"
+			},
+			{
+				"name": "bidAmount",
+				"type": "uint256"
+			},
+			{
+				"name": "bid",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "status",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "verifyManager",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "voteManager",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "voterLength",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "voters",
+		"outputs": [
+			{
+				"name": "voted",
+				"type": "bool"
+			},
+			{
+				"name": "isRegistered",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "winner",
+		"outputs": [
+			{
+				"name": "bidder",
+				"type": "address"
+			},
+			{
+				"name": "bidAmount",
+				"type": "uint256"
+			},
+			{
+				"name": "bid",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
         window.ethereum.enable()
         if (typeof web3 !== "undefined") {
             web3 = new Web3(web3.currentProvider);

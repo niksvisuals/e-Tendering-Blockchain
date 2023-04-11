@@ -477,7 +477,7 @@
 		console.log("sdffgg")
 	}
 
-
+	var increment = 0;
 	function getBids() {
 		for (var i = 0; i < l; i++) {
 			let bid;
@@ -489,7 +489,7 @@
 				else {
 					// console.log(result, "dff");
 					//result 0 is bidders address,
-					let bid = { index: result[0], amt: result[1].c[0], descp: result[2], id: i - 1 };
+					let bid = { index: result[0], amt: result[1].c[0], descp: result[2], id: increment++ };
 					bids.push(bid);
 				}
 			})
@@ -523,7 +523,7 @@
 	}
 	function shortlistBidder() {
 		// console.log('inside short list')
-		index = document.getElementById("finalIndex");
+		let index = document.getElementById("finalIndex"); // stores address
 		let obj = bids.find(o => o.index == index.value);
 		// console.log(obj.id, 'bid index')
 		contract_instance.selectedBidFun.call(
