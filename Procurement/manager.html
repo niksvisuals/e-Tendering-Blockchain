@@ -15,54 +15,54 @@
 
 		var fcontract_abi = [
 			{
-		"constant": false,
-		"inputs": [
+				"constant": false,
+				"inputs": [
+					{
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "addVoteManager",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
 			{
-				"name": "_address",
-				"type": "address"
-			}
-		],
-		"name": "addVoteManager",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
+				"constant": false,
+				"inputs": [
+					{
+						"name": "description",
+						"type": "string"
+					}
+				],
+				"name": "createTender",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
 			{
-				"name": "description",
-				"type": "string"
-			}
-		],
-		"name": "createTender",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getDeployedTenders",
-		"outputs": [
+				"inputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
 			{
-				"name": "",
-				"type": "address[]"
+				"constant": true,
+				"inputs": [],
+				"name": "getDeployedTenders",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
 			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	}
-]
+		]
 		// contract Tender abi
 		var contract_abi = [
 			{
@@ -97,14 +97,14 @@
 				"constant": false,
 				"inputs": [
 					{
-				"name": "_preferences",
-				"type": "uint256[]"
-			}
-		],
-		"name": "castVote",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
+						"name": "_preferences",
+						"type": "uint256[]"
+					}
+				],
+				"name": "castVote",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -125,18 +125,18 @@
 				"constant": false,
 				"inputs": [
 					{
-				"name": "bidAmount",
-				"type": "uint256"
-			},
-			{
-				"name": "desc",
-				"type": "string"
-			}
-		],
-		"name": "makeBid",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
+						"name": "bidAmount",
+						"type": "uint256"
+					},
+					{
+						"name": "desc",
+						"type": "string"
+					}
+				],
+				"name": "makeBid",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -206,23 +206,23 @@
 				"outputs": [],
 				"payable": false,
 				"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
+				"type": "function"
+			},
 			{
-				"components": [
+				"constant": false,
+				"inputs": [
 					{
-						"name": "bidder",
-						"type": "address"
-					},
-					{
-						"name": "bidAmount",
-						"type": "uint256"
-					},
-					{
-						"name": "bid",
+						"components": [
+							{
+								"name": "bidder",
+								"type": "address"
+							},
+							{
+								"name": "bidAmount",
+								"type": "uint256"
+							},
+							{
+								"name": "bid",
 								"type": "string"
 							}
 						],
@@ -247,14 +247,14 @@
 					}
 				],
 				"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
+				"stateMutability": "view",
+				"type": "function"
+			},
 			{
-				"name": "",
+				"constant": true,
+				"inputs": [
+					{
+						"name": "",
 						"type": "uint256"
 					}
 				],
@@ -262,20 +262,20 @@
 				"outputs": [
 					{
 						"name": "bidder",
-				"type": "address"
-			},
-			{
-				"name": "bidAmount",
-				"type": "uint256"
-			},
-			{
-				"name": "bid",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
+						"type": "address"
+					},
+					{
+						"name": "bidAmount",
+						"type": "uint256"
+					},
+					{
+						"name": "bid",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
 			},
 			{
 				"constant": true,
@@ -297,28 +297,28 @@
 					}
 				],
 				"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
+				"stateMutability": "view",
+				"type": "function"
+			},
 			{
-				"name": "voter",
-				"type": "address"
-			}
-		],
-		"name": "getPreferencesList",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
+				"constant": true,
+				"inputs": [
+					{
+						"name": "voter",
+						"type": "address"
+					}
+				],
+				"name": "getPreferencesList",
+				"outputs": [
+					{
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
 			{
 				"constant": true,
 				"inputs": [],
@@ -351,33 +351,33 @@
 						"type": "string"
 					}
 				],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getTenderSummary",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
 			},
 			{
-				"name": "",
-				"type": "string"
+				"constant": true,
+				"inputs": [],
+				"name": "getTenderSummary",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address"
+					},
+					{
+						"name": "",
+						"type": "string"
+					},
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
 			},
 			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 				"constant": true,
 				"inputs": [
 					{
@@ -401,26 +401,26 @@
 					}
 				],
 				"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
+				"stateMutability": "view",
+				"type": "function"
+			},
 			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "voteManager",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
+				"constant": true,
+				"inputs": [
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "voteManager",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -574,8 +574,8 @@
 	</div>
 </body>
 <script>
-	// const contract_instance=new Object();
-	//TODO calculate winner for particular tender
+	// calculate winner for particular tender
+
 	function findWinnerHandler() {
 		const tenderAddr = document.getElementById("winnerLabel").value;
 		// console.log(web3.isAddress(tenderAddr))
@@ -583,42 +583,98 @@
 		const contract_instance = web3.eth
 			.contract(contract_abi)
 			.at(tenderAddr);
+		let callback = 0
+		let voters = []
 		try {
-			contract_instance.calcWinner.call({ from: web3.eth.accounts[0], gas:3000000, gasPrice:10 }, (err, result) => {
-				if (err) {
-					console.log(err.data.message)
-				} else {
-					contract_instance.calcWinner.sendTransaction({ from: web3.eth.accounts[0] }, (error, result) => {
-						if (error) {
-							console.log(error)
-						} else {
-							// var txHash = result;
-							// console.log(txHash, 'calculate winner transaction hash');
-							callWhenMined(result, mined);
+			for (let i = 0; i < 3; i++) {
+				contract_instance.voteManager(i, (err, res) => {
+
+					if (err) {
+						console.log('error while getting voter address')
+						console.log(err)
+					} else {
+						// console.log('voter address', res)
+						voters.push(res)
+						callback++
+						if (callback == 3) {
+							getVotes(voters, contract_instance)
 						}
-					})
-				}
-			})
+					}
+				})
+			}
 		} catch (e) {
 			console.log(e)
 			console.log('error while calculating winner')
 		}
 
 	}
+
+	function getVotes(voters, contract_instance) {
+		let votesByVoters = []
+		let callback = 0
+		// console.log(contract_instance, 'line 627')
+		voters.forEach(voter => {
+			contract_instance.getPreferencesList.call(voter, (err, res) => {
+				if (err) {
+					console.log(voter, err.data.message);
+				} else {
+					contract_instance.getPreferencesList(voter, (err, result) => {
+						if (err) {
+							console.log(err.data.message)
+						} else {
+							// result from blockchain is not formatted correctly
+							let arr = result.map(res => res.c[0])
+							votesByVoters.push(arr)
+							callback++
+							if (callback == 3) {
+								callingSTV(votesByVoters, contract_instance)
+							}
+							// console.log(arr, 'local res')
+						}
+					})
+				}
+			})
+		})
+		console.log('votes by voters', votesByVoters)
+	}
+	function callingSTV(votesArray, contract_instance) {
+		console.log('i am stil logged after failing')
+		//TODO change the candidates array that is hardcoded, second parameter
+		let resultIndex = runSTV(1, [0, 1], votesArray)
+		console.log('%cWinner is index ' + resultIndex, 'color:green; font-size:48px')
+		contract_instance.shortlistedBids(resultIndex, { from: web3.eth.accounts[0] }, (err, res) => {
+			if (err) { console.log(err, 'error occured while getting the winner bid') }
+			else {
+				console.log('winner bid ondex from shortlisted bids line 648', res)
+				contract_instance.setWinnerBid(resultIndex, { from: web3.eth.accounts[0] }, (err, result) => {
+					if (err) {
+						console.log(err, 'error occured while getting the winner bid')
+					} else {
+						console.log('Winner Bid set successful')
+					}
+				})
+			}
+		})
+	}
+
 	function addAdminHandler() {
 		var adminAddr = document.getElementById("adminLabel").value;
-		fcontract_instance.addVoteManager(adminAddr, { from: web3.eth.accounts[0] }, function (error, result) {
+		fcontract_instance.addVoteManager.call(adminAddr, { from: web3.eth.accounts[0] }, function (error, result) {
 			if (error) {
 				console.log(error.data.message);
 			} else {
-				var txHash = result;
-				// console.log(txHash, 'admin added transaction hash');
-				callWhenMined(txHash, mined);
+				fcontract_instance.addVoteManager.sendTransaction(adminAddr, { from: web3.eth.accounts[0] }, function (error, result) {
+					if (error) {
+						console.log(error.data.message)
+					} else {
+						callWhenMined(result, mined);
+					}
+				})
 			}
 		})
 		document.getElementById("adminLabel").value = "";
-
 	}
+
 	function createTender() {
 		var descp = document.getElementById("descp").value;
 		// console.log(descp);
@@ -676,5 +732,6 @@
 	crossorigin="anonymous"></script>
 <script src="scripts/custom/index.js"></script>
 <script src="scripts/jquery/jquery.min.js"></script>
+<script src="scripts/custom/stv.js"></script>
 
 </html>
