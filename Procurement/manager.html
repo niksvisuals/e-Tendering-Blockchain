@@ -686,9 +686,8 @@
 				if (error) {
 					console.log(error.data.message);
 				} else {
-					var txHash = result;
-					console.log(txHash, 'transaction hash');
-					callWhenMined(txHash, mined);
+					console.log('New tender created successfully.');
+					callWhenMined(result, mined);
 				}
 			}
 		);

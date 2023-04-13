@@ -572,7 +572,7 @@
 			let shortListed = []
 			let callback = 0
 			try {
-				console.log('handle vote btn tender index=>', tenderIndex)
+				// console.log('handle vote btn tender index=>', tenderIndex)
 				contract_instance.getShortlistedBidsCount((err, res) => {
 					if (err) {
 						console.log('error while getting shortlisted bids count')
@@ -584,11 +584,11 @@
 								if (err) {
 									console.log('error while getting shortlisted bid at index', index)
 								} else {
-									console.log('shortlisted bid', result)
+									// console.log('shortlisted bid', result)
 									shortListed.push(result);
 									callback++
 									if (callback == res) {
-										console.log(shortListed, 'all the shortlisted bids are these')
+										console.log('Following are shortlisted bids: ',shortListed)
 										draggableUI(shortListed, contract_instance)
 									}
 								}
@@ -632,15 +632,15 @@
 			for (let i = 0; i < kids.length; i++) {
 				votesArray.push(kids[i].id)
 			}
-			console.log(votesArray, 'votes array')
+			console.log('Preferences of current voter', votesArray)
 			let contract = web3.eth.contract(contract_abi).at(currentTenderAddr)
 			contract.castVote(votesArray, {from: web3.eth.accounts[0]}, (err, res)=>{
 				if(err){
 					console.log('error while submitting votes')
 					console.log(err)
 				}else{
-					console.log('Votes submitted successfully')
-					console.log(res)
+					console.log('Votes submitted successfully.')
+					callWhenMined(res, mined)
 				}
 			})
 		}

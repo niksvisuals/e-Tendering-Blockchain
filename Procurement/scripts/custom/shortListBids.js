@@ -466,12 +466,12 @@ async function shotListBidsBySorting(bids, contract) {
     let accounts22 = await web3.eth.getAccounts()
     // console.log(accounts22, 'shortlisting accounts')
     //send the shotlisted bids to blockchain
-    console.info('Shortlisted Bids are follows: ')
-    console.info(sortedBidsArray)
     try {
         // console.log('hope this works 11')
         contract.methods.setShortlistedBids(sortedBidsArray).send({ from: accounts22[0] }).then(res => {
-            console.log('%cBids shotlisted succesfully', 'color:blue; font-size:36px', res)
+            console.log('%cBids shotlisted succesfully', 'color:blue; font-size:36px')
+            console.info('Shortlisted Bids are follows: ')
+            console.info(sortedBidsArray)
 
         }).catch(
             error => console.log('error while settng shotlisted bids', error)

@@ -637,7 +637,7 @@
 		})
 	}
 	function tenderClicked(i) {
-		console.log(i)
+		// console.log(i)
 		index = i
 	}
 	function makeBid() {
@@ -651,9 +651,9 @@
 
 				console.log(error.data.message)
 			} else {
-				var txHash = result
-				console.log(txHash)
-				callWhenMined(txHash, mined)
+				// var txHash = result
+				// console.log(txHash)
+				callWhenMined(result, mined)
 			}
 		})
 
@@ -675,7 +675,7 @@
 				}
 			})
 		}
-		console.log(bidAmount, descp, tenders[index].addr)
+		console.log('Bid Details','Amount:',bidAmount,'Description:', descp)
 		document.getElementById("bidAmount").value = ""
 		document.getElementById("descp").value = ""
 	}
