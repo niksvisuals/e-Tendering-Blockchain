@@ -2,218 +2,162 @@
 <html lang="en">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vote - G.o.I</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet" />
-    <link href="styles/css/app.css" rel="stylesheet" />
-    <script src="scripts/web3.js/web3.min.js"></script>
-    <script src="scripts/custom/qrcode.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Vote - G.o.I</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet" />
+	<link href="styles/css/app.css" rel="stylesheet" />
+	<script src="scripts/web3.js/web3.min.js"></script>
+	<script src="scripts/custom/qrcode.js"></script>
+	<style>
+		.ui-state-highlight {
+			height: 6em;
+			line-height: 1.2em;
+			background-color: antiquewhite;
+			border: 1px solid brown;
+		}
+	</style>
+	<script type="text/javascript">
 
-    <script type="text/javascript">
-        var fcontract_address = '0xd481543BBD94cC8b668BB8ef46DEE01F4ac310CE'
+		var fcontract_address = '0xd481543BBD94cC8b668BB8ef46DEE01F4ac310CE'
 
-        var fcontract_abi = [
-	{
-		"constant": false,
-		"inputs": [
+		var fcontract_abi = [
 			{
-				"name": "_address",
-				"type": "address"
-			}
-		],
-		"name": "addVoteManager",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "description",
-				"type": "string"
-			}
-		],
-		"name": "createTender",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getDeployedTenders",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	}
-]
-        // contract Tender abi
-        var contract_abi = [
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "verifyManager",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "status",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_preferences",
-				"type": "uint256[]"
-			}
-		],
-		"name": "castVote",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getBidCount",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "bidAmount",
-				"type": "uint256"
+				"constant": false,
+				"inputs": [
+					{
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "addVoteManager",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
 			},
 			{
-				"name": "desc",
-				"type": "string"
-			}
-		],
-		"name": "makeBid",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "bids",
-		"outputs": [
-			{
-				"name": "bidder",
-				"type": "address"
+				"constant": false,
+				"inputs": [
+					{
+						"name": "description",
+						"type": "string"
+					}
+				],
+				"name": "createTender",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
 			},
 			{
-				"name": "bidAmount",
-				"type": "uint256"
+				"inputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "constructor"
 			},
 			{
-				"name": "bid",
-				"type": "string"
+				"constant": true,
+				"inputs": [],
+				"name": "getDeployedTenders",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
 			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "data",
-		"outputs": [
+		]
+		// contract Tender abi
+		var contract_abi = [
 			{
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "voterLength",
-		"outputs": [
+				"constant": true,
+				"inputs": [],
+				"name": "verifyManager",
+				"outputs": [
+					{
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
 			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
+				"constant": true,
+				"inputs": [],
+				"name": "status",
+				"outputs": [
+					{
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
 			{
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"name": "setWinnerBid",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
+				"constant": false,
+				"inputs": [
+					{
+						"name": "_preferences",
+						"type": "uint256[]"
+					}
+				],
+				"name": "castVote",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
 			{
-				"components": [
+				"constant": true,
+				"inputs": [],
+				"name": "getBidCount",
+				"outputs": [
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "bidAmount",
+						"type": "uint256"
+					},
+					{
+						"name": "desc",
+						"type": "string"
+					}
+				],
+				"name": "makeBid",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "bids",
+				"outputs": [
 					{
 						"name": "bidder",
 						"type": "address"
@@ -227,425 +171,568 @@
 						"type": "string"
 					}
 				],
-				"name": "_bids",
-				"type": "tuple[]"
-			}
-		],
-		"name": "setShortlistedBids",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getShortlistedBidsCount",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "shortlistedBids",
-		"outputs": [
-			{
-				"name": "bidder",
-				"type": "address"
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
 			},
 			{
-				"name": "bidAmount",
-				"type": "uint256"
+				"constant": true,
+				"inputs": [],
+				"name": "data",
+				"outputs": [
+					{
+						"name": "",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
 			},
 			{
-				"name": "bid",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "voters",
-		"outputs": [
-			{
-				"name": "voted",
-				"type": "bool"
+				"constant": true,
+				"inputs": [],
+				"name": "voterLength",
+				"outputs": [
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
 			},
 			{
-				"name": "isRegistered",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "voter",
-				"type": "address"
-			}
-		],
-		"name": "getPreferencesList",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "areBidsShortListed",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "winner",
-		"outputs": [
-			{
-				"name": "bidder",
-				"type": "address"
+				"constant": false,
+				"inputs": [
+					{
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "setWinnerBid",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
 			},
 			{
-				"name": "bidAmount",
-				"type": "uint256"
+				"constant": false,
+				"inputs": [
+					{
+						"components": [
+							{
+								"name": "bidder",
+								"type": "address"
+							},
+							{
+								"name": "bidAmount",
+								"type": "uint256"
+							},
+							{
+								"name": "bid",
+								"type": "string"
+							}
+						],
+						"name": "_bids",
+						"type": "tuple[]"
+					}
+				],
+				"name": "setShortlistedBids",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
 			},
 			{
-				"name": "bid",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getTenderSummary",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
+				"constant": true,
+				"inputs": [],
+				"name": "getShortlistedBidsCount",
+				"outputs": [
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
 			},
 			{
-				"name": "",
-				"type": "string"
+				"constant": true,
+				"inputs": [
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "shortlistedBids",
+				"outputs": [
+					{
+						"name": "bidder",
+						"type": "address"
+					},
+					{
+						"name": "bidAmount",
+						"type": "uint256"
+					},
+					{
+						"name": "bid",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
 			},
 			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"name": "getSingleBid",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
+				"constant": true,
+				"inputs": [
+					{
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "voters",
+				"outputs": [
+					{
+						"name": "voted",
+						"type": "bool"
+					},
+					{
+						"name": "isRegistered",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
 			},
 			{
-				"name": "",
-				"type": "uint256"
+				"constant": true,
+				"inputs": [
+					{
+						"name": "voter",
+						"type": "address"
+					}
+				],
+				"name": "getPreferencesList",
+				"outputs": [
+					{
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
 			},
 			{
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "voteManager",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"name": "description",
-				"type": "string"
+				"constant": true,
+				"inputs": [],
+				"name": "areBidsShortListed",
+				"outputs": [
+					{
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
 			},
 			{
-				"name": "creator",
-				"type": "address"
+				"constant": true,
+				"inputs": [],
+				"name": "winner",
+				"outputs": [
+					{
+						"name": "bidder",
+						"type": "address"
+					},
+					{
+						"name": "bidAmount",
+						"type": "uint256"
+					},
+					{
+						"name": "bid",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
 			},
 			{
-				"name": "_voteManager",
-				"type": "address[]"
+				"constant": true,
+				"inputs": [],
+				"name": "getTenderSummary",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address"
+					},
+					{
+						"name": "",
+						"type": "string"
+					},
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "getSingleBid",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address"
+					},
+					{
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"name": "",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "voteManager",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"name": "creator",
+						"type": "address"
+					},
+					{
+						"name": "_voteManager",
+						"type": "address[]"
+					}
+				],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "constructor"
 			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	}
-]
-		
-		
+		]
+
+
 		window.ethereum.enable()
-        if (typeof web3 !== "undefined") {
-            web3 = new Web3(web3.currentProvider);
-        } else {
-            // set the provider you want from Web3.providers
-            console.log("not detected");
-            web3 = new Web3(
-                new Web3.providers.HttpProvider("http://localhost:7545")
-            );
-        }
+		if (typeof web3 !== "undefined") {
+			web3 = new Web3(web3.currentProvider);
+		} else {
+			// set the provider you want from Web3.providers
+			console.log("not detected");
+			web3 = new Web3(
+				new Web3.providers.HttpProvider("http://localhost:7545")
+			);
+		}
 
-        var fcontract_instance;
-        fcontract_instance = web3.eth
-            .contract(fcontract_abi)
-            .at(fcontract_address);
+		var fcontract_instance;
+		fcontract_instance = web3.eth
+			.contract(fcontract_abi)
+			.at(fcontract_address);
 
-        var index
-        var tenders = []
+		var index
+		var tenders = []
 
-        fcontract_instance.getDeployedTenders((error, result) => {
+		fcontract_instance.getDeployedTenders((error, result) => {
 
-            if (error) {
-                console.log("Error while getting list of deployed tenders")
-                console.log(error)
-            }
-            else {
-                let callbackHell = 0;
+			if (error) {
+				console.log("Error while getting list of deployed tenders")
+				console.log(error)
+			}
+			else {
+				let callbackHell = 0;
 
-                result.forEach(e => {
+				result.forEach(e => {
 
-                    let p = { addr: e }
-                    tenders.push(p)
-                    let instance = web3.eth.contract(contract_abi).at(e)
-                    
-                    instance.status((err, res)=>{
-                        if(err){
-                            console.log(err, 'err while getting stauts')
-                        }else{
-                            
-                                p.over = res;
-                            
-                        }
-                    })
-                    
-                    instance.data((err, res) => {
-                        if (err) { console.log(err) }
-                        else {
-                            // console.log(res, 'inside map')
-                            p.descp = res
-                            // return res
-                        }
-                    })
-                    instance.selectedBid((err, res) => {
-                        if (err) {
-                            console.log(err, 'error while getting selected bid')
-                        } else {
-                            let bid = { index: res[0], amt: res[1].c[0], descp: res[2] };
-                            p.selectedBid = bid;
-                            // console.log(bid, 'this is selected bid after extractions')
-                        }
-                    })
-                    //checking here if the bid is shortlisted for this contract
-                    instance.selectedBidIsSet((err, res) => {
-                        if (err) { console.log(err) }
-                        else {
-                            // console.log(res, 'inside map')
-                            p.status = res
-                            callbackHell++
-                            if (callbackHell == result.length) {
-                                populateTable()
-                            }
-                            // return res
-                        }
-                    })
-                })
-            }
-        })
+					let p = { addr: e }
+					tenders.push(p)
+					let instance = web3.eth.contract(contract_abi).at(e)
 
-        function populateTable() {
-            // console.log(tenders[0], 'inside populate table')
+					instance.status((err, res) => {
+						if (err) {
+							console.log(err, 'err while getting stauts')
+						} else {
+
+							p.over = res;
+
+						}
+					})
+
+					instance.data((err, res) => {
+						if (err) { console.log(err) }
+						else {
+							// console.log(res, 'inside map')
+							p.descp = res
+							// return res
+						}
+					})
+					/* instance.selectedBid((err, res) => {
+						if (err) {
+							console.log(err, 'error while getting selected bid')
+						} else {
+							let bid = { index: res[0], amt: res[1].c[0], descp: res[2] };
+							p.selectedBid = bid;
+							// console.log(bid, 'this is selected bid after extractions')
+						}
+					}) */
+					//checking here if the bid is shortlisted for this contract
+					instance.areBidsShortListed((err, res) => {
+						if (err) { console.log(err) }
+						else {
+							// console.log(res, 'inside map')
+							p.status = res
+							callbackHell++
+							if (callbackHell == result.length) {
+								populateTable()
+							}
+							// return res
+						}
+					})
+				})
+			}
+		})
+
+		function populateTable() {
+			// console.log(tenders[0], 'inside populate table')
 
 
-            var tendersBody = document.getElementById("tenders")
-            for (var i = 0; i < tenders.length; i++) {
+			var tendersBody = document.getElementById("tenders")
+			for (var i = 0; i < tenders.length; i++) {
 
-                // console.log(Object.keys(tenders[i]).length)
+				// console.log(Object.keys(tenders[i]).length)
 
-                tendersBody.innerHTML += tenders[i].status && !tenders[i].over ? //selected bid is true and winner is not declared
-                    "<tr> \
+				tendersBody.innerHTML += tenders[i].status && !tenders[i].over ? //selected bid is true and winner is not declared
+					"<tr> \
 					<td>" + (i + 1).toString() + "</td> \
 					<td>" + tenders[i].addr + "</td> \
 					<td>" + tenders[i].descp + "</td> \
-					<td>"+ tenders[i].selectedBid.descp + "</td> \
-                    <td>"+ tenders[i].selectedBid.amt + "</td> \
                     <td> \
-                        <button value='1' onClick='handleVoteBtn(this.value,"+ i.toString() + ")' type='button' class='btn btn-success'>Accept</button> \
-                        <button value='2' onClick='handleVoteBtn(this.value,"+ i.toString() + ")' type='button' class='btn btn-secondary'>Reject</button> \
+                        <button value='1' onClick='handleVoteBtn(this.value,"+ i.toString() + ")' type='button' data-toggle='modal' data-target='#exampleModal' class='btn btn-success'>Vote Now</button> \
                           </td> \
 				</tr>"
-                    : ""
-                // otherwise do not render the tender
-                /* :
-                "<tr data-toggle='modal' data-target='#tenderModal' onclick='tenderClicked(" + i.toString() + ")'> \
-                    <td>" + (i + 1).toString() + "</td> \
-                    <td>" + tenders[i].addr + "</td> \
-                    <td>" + tenders[i].descp + "</td> \
-                    <td><i style='font-weight:500; font-size:22px;' class='fas fa-times-circle fa-5x'></i></td> \
-                </tr>" */
-            }
-        }
-        function handleVoteBtn(voteVal, bidIndex) {
-            // console.log('i am clicked -> ' + voteVal)
-            // console.log('bid index -> ', bidIndex)
-            const contract_instance = web3.eth
-			.contract(contract_abi)
-			.at(tenders[bidIndex].addr);
-		try{
-			contract_instance.voteByManager.call(voteVal, {from: web3.eth.accounts[0]},(error, result)=>{
-			if(error){
-				console.log(error.data.message)
-			}else{
-                if(result){
-                    contract_instance.voteByManager.sendTransaction(voteVal, {from: web3.eth.accounts[0]}, (error, result)=>{
-                        callWhenMined(result, mined)
-                    })
-                }else{
-                    console.log('You are not allowed to vote');
-                }
+					: ""
+				// otherwise do not render the tender
+				/* :
+				"<tr data-toggle='modal' data-target='#tenderModal' onclick='tenderClicked(" + i.toString() + ")'> \
+					<td>" + (i + 1).toString() + "</td> \
+					<td>" + tenders[i].addr + "</td> \
+					<td>" + tenders[i].descp + "</td> \
+					<td><i style='font-weight:500; font-size:24px;' class='fas fa-times-circle fa-5x'></i></td> \
+				</tr>" */
 			}
-		})
-		}catch(e){
-			console.log(e)
-			console.log('error while voting')
 		}
-        }
+		let currentTenderAddr = ""
+		function handleVoteBtn(voteVal, tenderIndex) {
+			// console.log('i am clicked -> ' + voteVal)
+			// console.log('bid index -> ', bidIndex)
+			currentTenderAddr = tenders[tenderIndex].addr
+			const contract_instance = web3.eth
+				.contract(contract_abi)
+				.at(tenders[tenderIndex].addr);
+			let shortListed = []
+			let callback = 0
+			try {
+				console.log('handle vote btn tender index=>', tenderIndex)
+				contract_instance.getShortlistedBidsCount((err, res) => {
+					if (err) {
+						console.log('error while getting shortlisted bids count')
+						console.log(err)
+					}
+					else {
+						for (let index = 0; index < res; index++) {
+							contract_instance.shortlistedBids(index, (err, result) => {
+								if (err) {
+									console.log('error while getting shortlisted bid at index', index)
+								} else {
+									console.log('shortlisted bid', result)
+									shortListed.push(result);
+									callback++
+									if (callback == res) {
+										console.log(shortListed, 'all the shortlisted bids are these')
+										draggableUI(shortListed, contract_instance)
+									}
+								}
+							})
+						}
+					}
+				})
+			} catch (e) {
+				console.log(e)
+				console.log('error while voting')
+			}
+		}
 
-        function mined() {
-            console.log("Transaction Mined");
-        }
-        function callWhenMined(txHash, callback) {
-            web3.eth.getTransactionReceipt(txHash, function (error, rcpt) {
-                if (error) {
-                    console.log(error.data.message);
-                } else {
-                    if (rcpt == null) {
-                        console.log('failed to retrieve trx receipt')
-                        /* setTimeout(function () {
-                            callWhenMined(txHash, callback);
-                        }, 500); */
-                    } else {
-                        if (rcpt.status === '0x0') {
-                            console.log('tx failed')
-                        } else {
+		function draggableUI(bids, contract) {
+			let index = 0;
+			$("#sortable").empty()
+			bids.forEach(bid => {
+				let card = "<div class='card' style='margin:0.5rem 0;cursor:grab;' id=" + index + " >\
+					<li class='card-body' style='padding:0.5rem;'>\
+					<span class='font-weight-light'>Bid Amount:</span><h5 class='card-title' style='margin-bottom:4px'>&#8377;"+ bid[1] + "</h5>\
+				<span class='font-weight-light'>	Bidder:</span><br><p class='card-text' style='margin-bottom:4px'>"+ bid[0] + "</p>\
+						<span class='font-weight-light'>Description:</span><br><p class='card-subtitle' style='margin-bottom:0'>"+ bid[2] + "</p>\
+					</li>\
+				</div>"
+				$('#sortable').append(card)
+				index++
+			})
+			$(function () {
+				$("#sortable").sortable({
+					placeholder: "ui-state-highlight"
+				});
+				$("#sortable").disableSelection();
+			});
 
-                            // console.log(rcpt, 'tx receipt')	
-                            callback();
-                        }
-                    }
-                }
-            });
-        }
+		}
 
-    </script>
+		function submitVotes() {
+			let kids = $("#sortable").children()
+			// let list = document.getElementById('sortable')
+			let votesArray = []
+			for (let i = 0; i < kids.length; i++) {
+				votesArray.push(kids[i].id)
+			}
+			console.log(votesArray, 'votes array')
+			let contract = web3.eth.contract(contract_abi).at(currentTenderAddr)
+			contract.castVote(votesArray, {from: web3.eth.accounts[0]}, (err, res)=>{
+				if(err){
+					console.log('error while submitting votes')
+					console.log(err)
+				}else{
+					console.log('Votes submitted successfully')
+					console.log(res)
+				}
+			})
+		}
+
+		function mined() {
+			console.log("Transaction Mined");
+		}
+		function callWhenMined(txHash, callback) {
+			web3.eth.getTransactionReceipt(txHash, function (error, rcpt) {
+				if (error) {
+					console.log(error.data.message);
+				} else {
+					if (rcpt == null) {
+						console.log('failed to retrieve trx receipt')
+						/* setTimeout(function () {
+							callWhenMined(txHash, callback);
+						}, 500); */
+					} else {
+						if (rcpt.status === '0x0') {
+							console.log('tx failed')
+						} else {
+
+							// console.log(rcpt, 'tx receipt')	
+							callback();
+						}
+					}
+				}
+			});
+		}
+
+	</script>
 </head>
 
 <body>
-    <div class="home">
+	<div class="home">
 
-        <div class="topbar">
-            APPROVE / REJECT SHORTLISTED BIDS
-        </div>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Sr. No.</th>
-                    <th scope="col">Tender Address</th>
-                    <th scope="col">Tender Description</th>
-                    <th scope="col">Bidder Desc</th>
-                    <th scope="col">Bidder Amt</th>
-                    <th scope="col">Vote</th>
-                </tr>
-            </thead>
-            <tbody id="tenders">
-            </tbody>
-        </table>
-    </div>
+		<div class="topbar">
+			APPROVE / REJECT SHORTLISTED BIDS
+		</div>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">Sr. No.</th>
+					<th scope="col">Tender Address</th>
+					<th scope="col">Tender Description</th>
+					<!-- <th scope="col">Bidder Desc</th> -->
+					<!-- <th scope="col">Bidder Amt</th> -->
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody id="tenders">
+			</tbody>
+		</table>
+		<!-- ranking UI for voting in modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="exampleModalLabel">Drag the Bids to Reorder</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<ul id="sortable" style="list-style: none; margin:auto; padding: 0em;">
+
+						</ul>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+						<button type="button" class="btn btn-primary" onclick="submitVotes()">Submit Votes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 
 
 <script src="https://kit.fontawesome.com/148a1c7248.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
 <script src="scripts/custom/index.js"></script>
 <script src="scripts/jquery/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
 </html>

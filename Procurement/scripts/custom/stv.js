@@ -1,5 +1,5 @@
 function runSTV(numSeats, candidates, ballots) {
-    console.log('%cInside stv', 'color:gray; font-size:32px')
+    // console.log('%cInside stv', 'color:gray; font-size:32px')
     const numCandidates = candidates.length;
     const quotas = Math.floor(ballots.length / (1 + 1) + 1);
 
@@ -8,8 +8,8 @@ function runSTV(numSeats, candidates, ballots) {
     let round = 1;
     //console.log(ballots)
     while (elected.length < numSeats) {
-        console.log('round ' + round);
-        console.log(candidates, 'current candidates');
+        console.log('Counting Round ' + round);
+        console.log(candidates, 'Current Round Candidates');
         const votes = {};
 
         for (let i = 0; i < candidates.length; i++) {
@@ -28,7 +28,7 @@ function runSTV(numSeats, candidates, ballots) {
                 }
             }
         }
-        console.log(votes, 'votes object');
+        console.log(votes, 'Votes of Each Candidate');
 
         //finding winner, if any candidate meet the quota
         for (let i = 0; i < candidates.length; i++) {
@@ -59,10 +59,10 @@ function runSTV(numSeats, candidates, ballots) {
         // case: all candidates have equal votes
         // thus eliminate the last candidate in the array of eliminatedCandidates
         if (eliminatedCandidates.length == candidates.length) {
-            console.log('all candidates have same minVotes', eliminatedCandidates);
+            // console.log('all candidates have same minVotes', eliminatedCandidates);
             eliminatedCandidates.reverse();
             while (eliminatedCandidates.length > 1) {
-                console.log('hi');
+                // console.log('hi');
                 eliminatedCandidates.pop();
             }
         }
@@ -79,12 +79,12 @@ function runSTV(numSeats, candidates, ballots) {
         }
 
         round++;
-        console.log(eliminated, 'eliminated until now');
+        // console.log(eliminated, 'eliminated until now');
     }
-    console.log(
+    /* console.log(
         elected,
         '------------------------elected---------------------------'
-    );
+    ); */
     return elected;
 }
 

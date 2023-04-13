@@ -635,22 +635,22 @@
 				}
 			})
 		})
-		console.log('votes by voters', votesByVoters)
+		// console.log('votes by voters', votesByVoters)
 	}
 	function callingSTV(votesArray, contract_instance) {
-		console.log('i am stil logged after failing')
 		//TODO change the candidates array that is hardcoded, second parameter
 		let resultIndex = runSTV(1, [0, 1], votesArray)
-		console.log('%cWinner is index ' + resultIndex, 'color:green; font-size:48px')
 		contract_instance.shortlistedBids(resultIndex, { from: web3.eth.accounts[0] }, (err, res) => {
 			if (err) { console.log(err, 'error occured while getting the winner bid') }
 			else {
-				console.log('winner bid ondex from shortlisted bids line 648', res)
+				// console.log('winner bid ondex from shortlisted bids line 648', res)
 				contract_instance.setWinnerBid(resultIndex, { from: web3.eth.accounts[0] }, (err, result) => {
 					if (err) {
 						console.log(err, 'error occured while getting the winner bid')
 					} else {
+						callWhenMined(result)
 						console.log('Winner Bid set successful')
+						console.log('%cWinner is index ' + resultIndex, 'color:green; font-size:48px')
 					}
 				})
 			}
