@@ -1,7 +1,7 @@
 window.ethereum.enable()
 
 //factory tender contract address and contract abi
-var fcontract_address = '0x984E3B8275D56aCdF81d8B5EEA9177c7753Eb7E6'
+var fcontract_address = '0xd481543BBD94cC8b668BB8ef46DEE01F4ac310CE'
 
 var fcontract_abi = [
     {
@@ -57,6 +57,34 @@ var fcontract_abi = [
 // contract Tender abi
 var contract_abi = [
     {
+        "constant": true,
+        "inputs": [],
+        "name": "verifyManager",
+        "outputs": [
+            {
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "status",
+        "outputs": [
+            {
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
         "constant": false,
         "inputs": [
             {
@@ -68,6 +96,20 @@ var contract_abi = [
         "outputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "getBidCount",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
         "type": "function"
     },
     {
@@ -86,95 +128,6 @@ var contract_abi = [
         "outputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "constant": false,
-        "inputs": [
-            {
-                "components": [
-                    {
-                        "name": "bidder",
-                        "type": "address"
-                    },
-                    {
-                        "name": "bidAmount",
-                        "type": "uint256"
-                    },
-                    {
-                        "name": "bid",
-                        "type": "string"
-                    }
-                ],
-                "name": "_bids",
-                "type": "tuple[]"
-            }
-        ],
-        "name": "setShortlistedBids",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "constant": false,
-        "inputs": [
-            {
-                "components": [
-                    {
-                        "name": "bidder",
-                        "type": "address"
-                    },
-                    {
-                        "name": "bidAmount",
-                        "type": "uint256"
-                    },
-                    {
-                        "name": "bid",
-                        "type": "string"
-                    }
-                ],
-                "name": "_winner",
-                "type": "tuple"
-            }
-        ],
-        "name": "setWinnerBid",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "name": "description",
-                "type": "string"
-            },
-            {
-                "name": "creator",
-                "type": "address"
-            },
-            {
-                "name": "_voteManager",
-                "type": "address[]"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "constructor"
-    },
-    {
-        "constant": true,
-        "inputs": [],
-        "name": "areBidsShortListed",
-        "outputs": [
-            {
-                "name": "",
-                "type": "bool"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
         "type": "function"
     },
     {
@@ -221,7 +174,7 @@ var contract_abi = [
     {
         "constant": true,
         "inputs": [],
-        "name": "getBidCount",
+        "name": "voterLength",
         "outputs": [
             {
                 "name": "",
@@ -233,22 +186,45 @@ var contract_abi = [
         "type": "function"
     },
     {
-        "constant": true,
+        "constant": false,
         "inputs": [
             {
-                "name": "voter",
-                "type": "address"
+                "name": "index",
+                "type": "uint256"
             }
         ],
-        "name": "getPreferencesList",
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256[]"
-            }
-        ],
+        "name": "setWinnerBid",
+        "outputs": [],
         "payable": false,
-        "stateMutability": "view",
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "components": [
+                    {
+                        "name": "bidder",
+                        "type": "address"
+                    },
+                    {
+                        "name": "bidAmount",
+                        "type": "uint256"
+                    },
+                    {
+                        "name": "bid",
+                        "type": "string"
+                    }
+                ],
+                "name": "_bids",
+                "type": "tuple[]"
+            }
+        ],
+        "name": "setShortlistedBids",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
         "type": "function"
     },
     {
@@ -256,55 +232,6 @@ var contract_abi = [
         "inputs": [],
         "name": "getShortlistedBidsCount",
         "outputs": [
-            {
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [
-            {
-                "name": "index",
-                "type": "uint256"
-            }
-        ],
-        "name": "getSingleBid",
-        "outputs": [
-            {
-                "name": "",
-                "type": "address"
-            },
-            {
-                "name": "",
-                "type": "uint256"
-            },
-            {
-                "name": "",
-                "type": "string"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [],
-        "name": "getTenderSummary",
-        "outputs": [
-            {
-                "name": "",
-                "type": "address"
-            },
-            {
-                "name": "",
-                "type": "string"
-            },
             {
                 "name": "",
                 "type": "uint256"
@@ -343,67 +270,6 @@ var contract_abi = [
     },
     {
         "constant": true,
-        "inputs": [],
-        "name": "status",
-        "outputs": [
-            {
-                "name": "",
-                "type": "bool"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [],
-        "name": "verifyManager",
-        "outputs": [
-            {
-                "name": "",
-                "type": "bool"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [
-            {
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "name": "voteManager",
-        "outputs": [
-            {
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [],
-        "name": "voterLength",
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
         "inputs": [
             {
                 "name": "",
@@ -418,6 +284,39 @@ var contract_abi = [
             },
             {
                 "name": "isRegistered",
+                "type": "bool"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "voter",
+                "type": "address"
+            }
+        ],
+        "name": "getPreferencesList",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256[]"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "areBidsShortListed",
+        "outputs": [
+            {
+                "name": "",
                 "type": "bool"
             }
         ],
@@ -446,6 +345,93 @@ var contract_abi = [
         "payable": false,
         "stateMutability": "view",
         "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "getTenderSummary",
+        "outputs": [
+            {
+                "name": "",
+                "type": "address"
+            },
+            {
+                "name": "",
+                "type": "string"
+            },
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "index",
+                "type": "uint256"
+            }
+        ],
+        "name": "getSingleBid",
+        "outputs": [
+            {
+                "name": "",
+                "type": "address"
+            },
+            {
+                "name": "",
+                "type": "uint256"
+            },
+            {
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "name": "voteManager",
+        "outputs": [
+            {
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "description",
+                "type": "string"
+            },
+            {
+                "name": "creator",
+                "type": "address"
+            },
+            {
+                "name": "_voteManager",
+                "type": "address[]"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "constructor"
     }
 ]
 
@@ -465,6 +451,7 @@ async function shotListBidsBySorting(bids, contract) {
         return a.amt - b.amt
     })
     // console.log(sortedBids, 'sorted bids')
+    //TODO change the no. of bids to splice
     sortedBids.splice(2, sortedBids.length)
     // console.log(sortedBids, 'spliced bids')
     let sortedBidsArray = []

@@ -91,8 +91,8 @@ contract Tender {
         );
         _;
     }
-function setWinnerBid(Bid _winner) public restricted{
-    winner = _winner;
+function setWinnerBid(uint index) public restricted{
+    winner = shortlistedBids[index];
     complete = true;
 }
 
