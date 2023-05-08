@@ -639,7 +639,7 @@
 	}
 	function callingSTV(votesArray, contract_instance) {
 		//TODO change the candidates array that is hardcoded, second parameter
-		let resultIndex = runSTV(1, [0, 1], votesArray)
+		let resultIndex = runSTV(1, [0, 1, 2], votesArray)
 		contract_instance.shortlistedBids(resultIndex, { from: web3.eth.accounts[0] }, (err, res) => {
 			if (err) { console.log(err, 'error occured while getting the winner bid') }
 			else {

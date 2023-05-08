@@ -452,7 +452,7 @@ async function shotListBidsBySorting(bids, contract) {
     })
     // console.log(sortedBids, 'sorted bids')
     //TODO change the no. of bids to splice
-    sortedBids.splice(2, sortedBids.length)
+    sortedBids.splice(3, sortedBids.length)
     // console.log(sortedBids, 'spliced bids')
     let sortedBidsArray = []
 
